@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Navigo Demo</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css">
+    <!-- Include the Tailwind CSS script -->
+    <style>
+        /* Dark theme styles */
+        body {
+            background-color: #333;
+            color: #fff;
+        }
+
+        #menu a {
+            font-size: 25px; /* Adjust the font size as needed */
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        #menu a:hover {
+            color: #55a4ff; /* Change the color on hover */
+        }
+    </style>
 </head>
 <body>
-    <h1>Kino Project</h1>
+
+<nav id="menu" class="bg-blue-500 p-4">
+    <h4 class="text-end" id="loggedInAs"><a href="login" data-navigo>Sign In&nbsp;</a><a  href="signUp" data-navigo className="mr-4">Sign Up</a></h4>
+    <div class="container mx-auto">
+
+        <a href="users" data-navigo class="mr-4">Show All Users</a>
+
+    </div>
+</nav>
+
+<div id="content" style="margin:15px;"></div>
+
+<script src="index.js" type="module"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>
+
