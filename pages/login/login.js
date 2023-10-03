@@ -1,7 +1,12 @@
 export function initLogin(){
+    document.getElementById("login-form").style.display="block"
+    document.getElementById("close").addEventListener("click",()=>{
+        document.getElementById("login-form").style.display="none"
+    })
 
     const loginForm = document.getElementById('loginForm');
     const loggedInMessage = document.getElementById('loggedInMessage');
+    
 
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
