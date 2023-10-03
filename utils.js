@@ -99,4 +99,12 @@ export function sanitizeStringWithTableRows(tableRows) {
   return secureRows
 }
 
+export function showPopup(template, contentId){
+  const content = document.getElementById(contentId)
+  if (!content) {
+    throw Error("No Element found for provided content id")
+  }
+
+  content.append(template)
+}
 
