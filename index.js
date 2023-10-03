@@ -1,7 +1,7 @@
 import "https://unpkg.com/navigo"  //Will create the global Navigo object used below
 import "https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"
 import {
-    setActiveLink, renderHtml, loadHtml
+    setActiveLink, renderHtml, loadHtml, showPopup
 } from "./utils.js"
 
 import {initLogin} from "./pages/login/login.js"
@@ -30,7 +30,7 @@ const templateSignUp = await loadHtml("./pages/signUp/signUp.html")
         })
         .on({
             "/login": () => {
-                renderHtml(templateLogin, "content")
+                showPopup(templateLogin, "content")
                 initLogin()
     },
             "/users": () => {
