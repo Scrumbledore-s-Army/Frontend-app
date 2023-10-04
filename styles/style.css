@@ -29,6 +29,7 @@
     height: 35px;
     cursor: pointer;
 }
+
 .movie-card {
     max-height: 90%;
     border-radius: 5px;
@@ -58,7 +59,7 @@
     border: 1px solid darkgrey;
 }
 
-.read-more-btn:hover{
+.read-more-btn:hover {
     background: black;
     color: white;
 }
@@ -75,13 +76,19 @@
     color: white;
 }
 
-.tickets-btn:hover{
+.tickets-btn:hover {
     background: #2d0000;
 }
 
 .ticket-btn-icon {
     max-height: 80%;
 }
-.movie-poster-img{
+
+.movie-poster-img {
     border-radius: 5px;
+}
+
+.movie-poster-img:hover {
+    transform: scale(1.02); /* Increase size by 10% (1 + 0.1) */
+    transition: transform 0.2s ease; /* Add a smooth transition effect */
 }
