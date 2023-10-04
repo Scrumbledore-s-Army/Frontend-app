@@ -170,3 +170,38 @@
 #signup-ref-button:hover {
     background-color: #4B2990;
 }
+
+.table-heading {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.custom-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 18px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.custom-table th {
+    background-color: darkgrey;
+    color: #fff;
+    padding: 10px;
+}
+
+.custom-table td,
+.custom-table th {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 10px;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #fdfdfd;
+}
+
+
