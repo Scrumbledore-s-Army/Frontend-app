@@ -236,7 +236,36 @@ body {
     transform: rotate(-45deg);
 }
 
+.cinema-container {
+    display: flex;
+    align-items: flex-start; /* Align items vertically at the top */
+}
+
+#cinemaSeats {
+    /* Your existing styles for cinema seats */
+}
+
+#selectedSeatsContainer {
+    border: 2px solid black;
+    padding: 10px;
+    margin-left: 20px; /* Add some spacing between cinema seats and selected seats */
+    min-width: 150px;
+
+}
+
+#seatsSelected {
+
+}
+
+
 .nav-container input[type="checkbox"]:checked ~ .logo {
     display: none;
 }
 
+.cinema-seat {
+    max-height: 25px;
+    margin: 3px;
+}
+.marked-cell{
+    background: green;
+}
