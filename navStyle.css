@@ -17,6 +17,7 @@ a {
     text-decoration: none;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     cursor: pointer;
+    font-size: 14px;
 }
 
 #leftNavContent, #rightNavContent {
@@ -268,4 +269,7 @@ body {
 }
 .marked-cell{
     background: green;
+}
+.reserved-seat {
+    background: red;
 }
