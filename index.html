@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Navigo Demo</title>
     <link rel="stylesheet" href="bootstrap.min.css">
-    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/style.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css">
     <!-- Include the Tailwind CSS script -->
-    <style>
-        /* Dark theme styles */
-        body {
-            background-color: #333;
-            color: #fff;
-        }
-
-        #menu a {
-            font-size: 25px; /* Adjust the font size as needed */
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        #menu a:hover {
-            color: #55a4ff; /* Change the color on hover */
-        }
-    </style>
 </head>
+<link rel="stylesheet" href="navStyle.css">
 <body>
-
-<nav id="menu" class="bg-blue-500 p-4">
-    <div style="display: flex; margin: 0px 10px; justify-content:space-between;">
-    <div class="">
-
-        <a href="users" data-navigo class="mr-4">Show All Users</a>
-
+<nav id="menu" class="outerNavBar">
+    <div style="width: 40%;">
+        <div class="navbar" id="hamburger-container">
+            <div class="container nav-container">
+                <input class="checkbox" type="checkbox" name="" id=""/>
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <div class="menu-items">
+                    <li><a href="#" data-navigo>Home</a></li>
+                    <li><a href="#" data-navigo>about</a></li>
+                    <li><a href="#" data-navigo>blogs</a></li>
+                    <li><a href="#" data-navigo>portfolio</a></li>
+                    <li><a href="#" data-navigo>contact</a></li>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%;" id="leftNavContent">
+            <a href="aktuelleFilm" data-navigo>Aktuelle Film</a>
+            <a href="#" data-navigo>Kommende film</a>
+            <a href="#" data-navigo>Kontakt</a>
+            <a href="users" data-navigo>Show Users</a>
+        </div>
     </div>
-    <div class="text-end" id="loggedInAs">
-        <a id="login-button" href="login" data-navigo>Sign In&nbsp;</a><a  href="signUp" data-navigo className="mr-4">Sign Up</a>
+    <img id="logo" src="img.png" style="max-height: 47px">
+    <div id="rightNavContent">
+        <div class="text-end" id="loggedInAs" style="display: flex; align-items: center">
+            <a class="nav-link" id="login-button" href="login" data-navigo>Sign In&nbsp;</a><a href="signUp" data-navigo
+                                                                              className="mr-4">Sign Up</a>
+        </div>
     </div>
-</div>
+
+
 </nav>
 
-<div id="content" style="margin:15px;"></div>
+<div id="content"></div>
 
 <script src="index.js" type="module"></script>
 <script src="https://cdn.tailwindcss.com"></script>
