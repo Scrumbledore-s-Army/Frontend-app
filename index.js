@@ -8,6 +8,7 @@ import {initLogin} from "./pages/login/login.js"
 import {initShowAllUsers} from "./pages/showAllUsers/showAllUsers.js";
 import {initSignUp} from "./pages/signUp/signUp.js";
 import {initSignOut} from "./pages/signOut/initSignOut.js";
+import {initAddFilm} from "./pages/addFilms/addFilms.js"
 
 window.addEventListener("load", async () => {
 
@@ -15,6 +16,7 @@ window.addEventListener("load", async () => {
     const templateLogin = await loadHtml("./pages/login/login.html")
     const templateShowAllUsers = await loadHtml("./pages/showAllUsers/showAllUsers.html")
 const templateSignUp = await loadHtml("./pages/signUp/signUp.html")
+const templateAddFilm = await loadHtml("./pages/addFilms/addFilms.html")
 
 
     const router = new Navigo("/", {hash: true});
@@ -46,6 +48,11 @@ const templateSignUp = await loadHtml("./pages/signUp/signUp.html")
             "/signUp": () => {
                 renderHtml(templateSignUp, "content")
                 initSignUp()
+            }
+            ,
+            "/addFilm":()=> {
+                renderHtml(templateAddFilm, "content")
+                initAddFilm()
             }
         })
         .resolve()
