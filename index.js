@@ -1,13 +1,14 @@
 import "https://unpkg.com/navigo"  //Will create the global Navigo object used below
 import "https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"
 import {
-    setActiveLink, renderHtml, loadHtml, showPopup
+    setActiveLink, renderHtml, loadHtml, showPopup, adjustForMissingHash
 } from "./utils.js"
 
 import {initLogin} from "./pages/login/login.js"
 import {initShowAllUsers} from "./pages/showAllUsers/showAllUsers.js";
 import {initSignUp} from "./pages/signUp/signUp.js";
 import {initSignOut} from "./pages/signOut/initSignOut.js";
+import  {initAktuelleFilm} from "./pages/aktuelleFilm/aktuelleFilm.js";
 
 window.addEventListener("load", async () => {
 
@@ -15,6 +16,8 @@ window.addEventListener("load", async () => {
     const templateLogin = await loadHtml("./pages/login/login.html")
     const templateShowAllUsers = await loadHtml("./pages/showAllUsers/showAllUsers.html")
 const templateSignUp = await loadHtml("./pages/signUp/signUp.html")
+    const templateAktuelleFilm = await loadHtml("./pages/aktuelleFilm/aktuelleFilm.html")
+    
 
 
     const router = new Navigo("/", {hash: true});
@@ -26,28 +29,42 @@ const templateSignUp = await loadHtml("./pages/signUp/signUp.html")
             before(done, match) {
                 setActiveLink("menu", match.url)
                 done()
+                adjustForMissingHash()
             }
         })
         .on({
             "/login": () => {
                 showPopup(templateLogin, "content")
                 initLogin()
+                adjustForMissingHash()
     },
             "/users": () => {
                 renderHtml(templateShowAllUsers, "content")
                 initShowAllUsers()
+                adjustForMissingHash()
             }
             ,
             "/signOut": () => {
                 renderHtml(templateLogin, "content")
                 initSignOut()
+                adjustForMissingHash()
             }
             ,
             "/signUp": () => {
                 renderHtml(templateSignUp, "content")
                 initSignUp()
+                adjustForMissingHash()
             }
+
+            ,
+            "/aktuelleFilm": () => {
+                renderHtml(templateAktuelleFilm, "content")
+                initAktuelleFilm()
+                adjustForMissingHash()
+            }
+
         })
+
         .resolve()
 });
 
