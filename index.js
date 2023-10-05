@@ -10,7 +10,6 @@ import {initSignUp} from "./pages/signUp/signUp.js";
 import {initSignOut} from "./pages/signOut/initSignOut.js";
 import {initAktuelleFilm} from "./pages/aktuelleFilm/aktuelleFilm.js";
 import {initBiografSal} from "./pages/biografSal/biografSal.js";
-import  {initAktuelleFilm} from "./pages/aktuelleFilm/aktuelleFilm.js";
 import {initAddShowing} from "./pages/addShowing/addShowing.js";
 
 
