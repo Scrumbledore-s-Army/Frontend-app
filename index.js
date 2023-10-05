@@ -13,7 +13,6 @@ import {initBiografSal} from "./pages/biografSal/biografSal.js";
 
 window.addEventListener("load", async () => {
 
-
     const templateLogin = await loadHtml("./pages/login/login.html")
     const templateShowAllUsers = await loadHtml("./pages/showAllUsers/showAllUsers.html")
     const templateSignUp = await loadHtml("./pages/signUp/signUp.html")
