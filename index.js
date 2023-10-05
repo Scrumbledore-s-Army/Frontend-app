@@ -8,18 +8,21 @@ import {initLogin} from "./pages/login/login.js"
 import {initShowAllUsers} from "./pages/showAllUsers/showAllUsers.js";
 import {initSignUp} from "./pages/signUp/signUp.js";
 import {initSignOut} from "./pages/signOut/initSignOut.js";
-import  {initAktuelleFilm} from "./pages/aktuelleFilm/aktuelleFilm.js";
+import {initAktuelleFilm} from "./pages/aktuelleFilm/aktuelleFilm.js";
+import {initBiografSal} from "./pages/biografSal/biografSal.js";
+import {initAddShowing} from "./pages/addShowing/addShowing.js";
+
 import {initAddFilm} from "./pages/addFilms/addFilms.js"
 
 window.addEventListener("load", async () => {
 
-
     const templateLogin = await loadHtml("./pages/login/login.html")
     const templateShowAllUsers = await loadHtml("./pages/showAllUsers/showAllUsers.html")
-const templateSignUp = await loadHtml("./pages/signUp/signUp.html")
+    const templateSignUp = await loadHtml("./pages/signUp/signUp.html")
     const templateAktuelleFilm = await loadHtml("./pages/aktuelleFilm/aktuelleFilm.html")
-    
-const templateAddFilm = await loadHtml("./pages/addFilms/addFilms.html")
+    const templateBiografSal = await loadHtml("./pages/biografSal/biografSal.html")
+    const templateAddShowing = await loadHtml("./pages/addShowing/addShowing.html")   
+    const templateAddFilm = await loadHtml("./pages/addFilms/addFilms.html")
 
 
     const router = new Navigo("/", {hash: true});
@@ -38,8 +41,9 @@ const templateAddFilm = await loadHtml("./pages/addFilms/addFilms.html")
             "/login": () => {
                 showPopup(templateLogin, "content")
                 initLogin()
-                adjustForMissingHash()
-    },
+              adjustForMissingHash()
+            }
+            ,
             "/users": () => {
                 renderHtml(templateShowAllUsers, "content")
                 initShowAllUsers()
@@ -57,14 +61,22 @@ const templateAddFilm = await loadHtml("./pages/addFilms/addFilms.html")
                 initSignUp()
                 adjustForMissingHash()
             }
-
             ,
             "/aktuelleFilm": () => {
                 renderHtml(templateAktuelleFilm, "content")
                 initAktuelleFilm()
+            }
+            ,
+            "/biografSal": () => {
+                renderHtml(templateBiografSal, "content")
+                initBiografSal()
                 adjustForMissingHash()
             }
-
+            ,
+            "/addShowing": () => {
+                renderHtml(templateAddShowing, "content")
+                initAddShowing()
+                adjustForMissingHash()
             }
             ,
             "/addFilm":()=> {
@@ -80,5 +92,5 @@ window.onerror = function (errorMsg, url, lineNumber, column, errorObj) {
     alert('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber + ' Column: ' + column + ' StackTrace: ' + errorObj);
 }
 
-if (localStorage.getItem('username')!==null)
-document.getElementById('loggedInAs').innerHTML=`Logged in as ${localStorage.getItem('username')}<a href="signOut" data-navigo style="margin-left: 10px; margin-right: 10px; font-size: 12px;">Sign Out</a>`
+if (localStorage.getItem('username') !== null)
+    document.getElementById('loggedInAs').innerHTML = `Logged in as ${localStorage.getItem('username')}<a href="signOut" data-navigo style="margin-left: 10px; margin-right: 10px; font-size: 12px;">Sign Out</a>`
