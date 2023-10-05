@@ -65,7 +65,7 @@ const templateAddFilm = await loadHtml("./pages/addFilms/addFilms.html")
                 adjustForMissingHash()
             }
 
-            }
+            
             ,
             "/addFilm":()=> {
                 renderHtml(templateAddFilm, "content")

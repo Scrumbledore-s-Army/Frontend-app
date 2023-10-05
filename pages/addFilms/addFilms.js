@@ -16,7 +16,9 @@ async function inspectFilm(){
     .then(film => {
         const markUp = `
         <ul>
-        <li>title: ${film.title}</li>
+        <li>title: ${film.Title}</li>
+        <li>title: ${film.Director}</li>
+        <li>title: ${film.Runtime}</li>
         </ul>
     `;
     console.log(filmId)
