@@ -12,6 +12,7 @@ import {initAktuelleFilm} from "./pages/aktuelleFilm/aktuelleFilm.js";
 import {initBiografSal} from "./pages/biografSal/biografSal.js";
 import {initAddShowing} from "./pages/addShowing/addShowing.js";
 
+import {initAddFilm} from "./pages/addFilms/addFilms.js"
 
 window.addEventListener("load", async () => {
 
@@ -20,7 +21,9 @@ window.addEventListener("load", async () => {
     const templateSignUp = await loadHtml("./pages/signUp/signUp.html")
     const templateAktuelleFilm = await loadHtml("./pages/aktuelleFilm/aktuelleFilm.html")
     const templateBiografSal = await loadHtml("./pages/biografSal/biografSal.html")
-    const templateAddShowing = await loadHtml("./pages/addShowing/addShowing.html")
+    const templateAddShowing = await loadHtml("./pages/addShowing/addShowing.html")   
+    const templateAddFilm = await loadHtml("./pages/addFilms/addFilms.html")
+
 
     const router = new Navigo("/", {hash: true});
     //Not especially nice, BUT MEANT to simplify things. Make the router global so it can be accessed from all js-files
@@ -74,6 +77,11 @@ window.addEventListener("load", async () => {
                 renderHtml(templateAddShowing, "content")
                 initAddShowing()
                 adjustForMissingHash()
+            }
+            ,
+            "/addFilm":()=> {
+                renderHtml(templateAddFilm, "content")
+                initAddFilm()
             }
         })
 
