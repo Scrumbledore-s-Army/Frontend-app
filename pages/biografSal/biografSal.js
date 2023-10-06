@@ -71,7 +71,7 @@ export function initBiografSal() {
                 const seatData = seatsData[i * 12 + j];
 
                 // Set the cinema seat image source
-                seat.setAttribute('src', 'cinema-seat-svgrepo-com.svg');
+                seat.setAttribute('src', '../../images/cinema-seat-svgrepo-com.svg');
                 seat.classList.add('cinema-seat');
 
                 if (seatData.isReserved) {

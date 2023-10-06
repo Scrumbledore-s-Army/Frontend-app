@@ -48,7 +48,7 @@ async function loadMovies() {
             ticketsSpan.textContent = "Billeter";
             const ticketsImg = document.createElement("img");
             ticketsImg.className = "ticket-btn-icon";
-            ticketsImg.src = "ticket-outline.svg";
+            ticketsImg.src = "../../images/ticket-outline.svg";
             ticketsLink.appendChild(ticketsSpan);
             ticketsLink.appendChild(ticketsImg);
 
