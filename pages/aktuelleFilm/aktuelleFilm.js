@@ -61,10 +61,23 @@ async function loadMovies() {
 
             // Append the movie card to the container
             movieContainer.appendChild(card);
-        });
+
+             readMoreLink.addEventListener("click", () => {
+                const modal = document.getElementById("myModal");
+                modal.style.display = "block";
+                const plotText = document.getElementById("plot-text");
+                plotText.textContent = movie.plot;
+            });
+        });     
+        
+          // Get the modal close button and add an event listener to close the modal
+          const closeButton = document.getElementsByClassName("close")[0];
+          closeButton.addEventListener("click", () => {
+              const modal = document.getElementById("myModal");
+              modal.style.display = "none";
+          });
     } catch (error) {
         console.error("Error fetching data:", error);
-
     }
 }
 
