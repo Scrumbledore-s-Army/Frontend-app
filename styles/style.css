@@ -1,3 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}
+
 #login-form {
     display: none;
     border: 1px solid black;
@@ -94,7 +104,7 @@
 .tickets-btn {
     width: 150px;
     height: 44px;
-    background: darkred;
+    background: rebeccapurple;
     border-radius: 35px;
     margin-top: 10px;
     display: flex;
@@ -127,7 +137,7 @@
     padding: 10px 20px;
     font-weight: bold;
     color: white;
-    background-color: #6B46C1;
+    background-color: rebeccapurple;
     border: none;
     border-radius: 5px;
     outline: none;
@@ -143,7 +153,7 @@
     padding: 10px 20px;
     font-weight: bold;
     color: white;
-    background-color: #6B46C1;
+    background-color: rebeccapurple;
     border: none;
     border-radius: 5px;
     outline: none;
@@ -159,7 +169,7 @@
     padding: 10px 20px;
     font-weight: bold;
     color: white;
-    background-color: #6B46C1;
+    background-color: rebeccapurple;
     border: none;
     border-radius: 5px;
     outline: none;
@@ -187,7 +197,7 @@
 }
 
 .custom-table th {
-    background-color: #6B46C1;
+    background-color: rebeccapurple;
     color: #fff;
     padding: 10px;
 }
@@ -201,6 +211,43 @@
 
 .custom-table tbody tr:hover {
     background-color: #fdfdfd;
+}
+
+#add-films-template {
+    display: flex;
+    margin-top: 100px   ;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#add-film-form {
+    margin-bottom: 20px;
+}
+
+#film-input {
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 300px;
+}
+
+#inspect-film {
+    margin-top: 10px;
+}
+
+#inspect-btn, #add-film-btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: rebeccapurple;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#inspect-btn:hover, #add-film-btn:hover {
+    background-color: #4B2990;
 }
 
 
