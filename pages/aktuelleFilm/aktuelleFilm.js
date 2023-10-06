@@ -3,13 +3,15 @@ export function initAktuelleFilm() {
 }
 
 async function loadMovies() {
-    try {
+    try {        
         // Select the movie container div
         const movieContainer = document.getElementById("movie-container");
         movieContainer.innerHTML = '';
         // Fetch the JSON data from the API
         const response = await fetch("http://localhost:8080/api/films");
         const data = await response.json();
+
+        const h1Element = document.querySelector("h1.h1-text");
 
         // Loop through the data and create movie cards
         data.forEach((movie) => {
@@ -67,6 +69,7 @@ async function loadMovies() {
                 modal.style.display = "block";
                 const plotText = document.getElementById("plot-text");
                 plotText.textContent = movie.plot;
+                h1Element.textContent = `Plot of movie: ${movie.title}`;
             });
         });     
         
