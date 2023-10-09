@@ -1,6 +1,6 @@
 
 
-export function initBiografSal() {
+export function initShowing() {
 
 
 

@@ -87,6 +87,6 @@ async function fetchAndDisplayShowings(movieId) {
 function showingInfo(event) {
     console.log(event.target.id)
     console.log("showingInfo")
-    window.location.href = `/#/showing/${event.target.id}`
+    window.location.href = `/#/showing?showingId=${event.target.id}`
 }
 
