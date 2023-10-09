@@ -67,7 +67,7 @@ async function fetchAndDisplayShowings(movieId) {
 
 
             const showingDiv = document.createElement("div");
-            showingDiv.addEventListener("click", showingInfo);
+            showingDiv.addEventListener("click", () => showingInfo(showing.id));
             showingDiv.setAttribute("id", showing.id)
             showingDiv.appendChild(showIdParagraph);
             showingDiv.appendChild(timeAndDateParagraph);
@@ -84,9 +84,9 @@ async function fetchAndDisplayShowings(movieId) {
     }
 }
 
-function showingInfo(event) {
-    console.log(event.target.id)
+function showingInfo(showingId) {
+    console.log(showingId)
     console.log("showingInfo")
-    window.location.href = `/#/showing?showingId=${event.target.id}`
+    window.location.href = `/#/showing?showingId=${showingId}`
 }
 
