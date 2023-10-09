@@ -67,6 +67,8 @@ async function fetchAndDisplayShowings(movieId) {
 
 
             const showingDiv = document.createElement("div");
+            showingDiv.addEventListener("click", showingInfo);
+            showingDiv.setAttribute("id", showing.id)
             showingDiv.appendChild(showIdParagraph);
             showingDiv.appendChild(timeAndDateParagraph);
             showingDiv.appendChild(ticketPriceParagraph);
@@ -76,8 +78,15 @@ async function fetchAndDisplayShowings(movieId) {
             // Append the created div to the "showing" element
             showingElement.appendChild(showingDiv);
         });
+        
     } catch (error) {
         console.error("Error fetching showings:", error);
     }
+}
+
+function showingInfo(event) {
+    console.log(event.target.id)
+    console.log("showingInfo")
+    window.location.href = `/#/showing/${event.target.id}`
 }
 

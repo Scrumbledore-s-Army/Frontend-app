@@ -79,6 +79,7 @@ window.addEventListener("load", async () => {
                 renderHtml(templateShowing, "content")
                 initShowing(match)
             }
+            
         })
         .resolve()
 });
