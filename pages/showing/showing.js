@@ -1,27 +1,34 @@
+import { API_URL } from "../../settings.js";
+import { handleHttpErrors, makeOptions } from "../../utils.js";
+
+export function initShowing(match) {
+
+    getShowing(match.params.showingId);
 
 
-export function initShowing() {
+    
+}
 
 
+async function getShowing(showingId){
+    const apiUrl = `${API_URL}/showings/${showingId}/includeSeats`;
+    const showing = await fetch(apiUrl).then(handleHttpErrors);
 
+    console.log(showing);
 
+    makeseats(showing);
+}
+
+function makeseats(showing){
     let tableCreated = false; // Flag to track if the table has been created
     let seatsData = []; // Mock data for seats
 
     let ticketReservations = [];
-    let movieTitle = 'Paw Patrol';
-    let salId = 1;
-    let showId = 15;
+    let movieTitle = showing.movieTitle;
+    let salId = showing.theater.id;
+    let showId = showing.id;
+    seatsData = showing.seats;
 
-// Mock data for seats
-    for (let i = 0; i < 20; i++) {
-        for (let j = 0; j < 12; j++) {
-            const seatNumber = i * 12 + j + 1;
-            const isReserved = Math.random() < 0.3; // Simulate 30% of seats being reserved
-            const showId = Math.floor(Math.random() * 5) + 1; // Simulate random show IDs
-            seatsData.push({seatNumber, isReserved, showId});
-        }
-    }
 
     // Select the cinema-container div
     const cinemaSeats = document.querySelector('.cinema-container');
@@ -37,7 +44,7 @@ export function initShowing() {
 
         // Function to toggle seat status
         function toggleSeatStatus(seat, seatData) {
-            if (seatData.isReserved) {
+            if (seatData.reservation !== null) {
                 // If the seat is reserved, do nothing
                 return;
             }
@@ -60,12 +67,12 @@ export function initShowing() {
 
             document.getElementById("seatsSelected").innerHTML = 'Sæder valgt: <br>    ' + markedSeats.map(seat => `- ${seat}<br>`).join('');
         }
-
+        const theaterRows = showing.theater.seatCount/showing.theater.rowLength
         // Loop to create rows and cells
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < theaterRows; i++) {
             const row = document.createElement('tr');
 
-            for (let j = 0; j < 12; j++) {
+            for (let j = 0; j < showing.theater.rowLength; j++) {
                 const cell = document.createElement('td');
                 const seat = document.createElement('img');
                 const seatData = seatsData[i * 12 + j];
@@ -74,7 +81,7 @@ export function initShowing() {
                 seat.setAttribute('src', '../../images/cinema-seat-svgrepo-com.svg');
                 seat.classList.add('cinema-seat');
 
-                if (seatData.isReserved) {
+                if (seatData.reservation !== null) {
                     seat.classList.add('reserved-seat');
                 } else {
                     // Add a click event listener to the seat
