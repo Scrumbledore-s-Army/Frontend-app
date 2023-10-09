@@ -23,8 +23,18 @@ async function loadMovies() {
 
             // Create a span for the movie title
             const titleSpan = document.createElement("span");
+            const maxLength = 32;
             titleSpan.className = "movie-title";
             titleSpan.textContent = movie.title;
+
+            if (movie.title.length > maxLength) {
+                titleSpan.textContent = movie.title.slice(0, maxLength) + "...";
+            } else {
+                titleSpan.textContent = movie.title;
+            }
+            
+            
+           
 
             // Create a div for the movie buttons container
             const btnsContainerDiv = document.createElement("div");
@@ -42,7 +52,7 @@ async function loadMovies() {
             // Create "Billeter" link
             const ticketsLink = document.createElement("a");
 
-            ticketsLink.href = `/find-film?filmId=${movie.id}`;
+            ticketsLink.href = `/#/find-film?filmId=${movie.id}`;
 
             ticketsLink.setAttribute("data-navigo", "");
             ticketsLink.className = "tickets-btn";
