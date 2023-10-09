@@ -20,19 +20,17 @@ async function addShowing(){
         ticketPrice: showingTicketPrice,
         timeAndDate: showingTimeAndDate
     }
-    console.log(newShowing)
 
     try{
         const newOpt = makeOptions("POST", newShowing, token);
         
         const response = await fetch(API_URL + "/showings", newOpt);
-console.log("1")
 
         if(response.ok){
-            console.log("added showing")
+            addshowingmessage.textContent = "Added Showing!";
         } else{
             const errorData = await response.json();
-            console.log("added showing failed")
+            addshowingmessage.textContent = "Added Showing FAILED!";
         }
         } catch (error){
             console.error("Error:", error);
