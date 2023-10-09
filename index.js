@@ -4,7 +4,7 @@ import {
     setActiveLink, renderHtml, loadHtml, showPopup, adjustForMissingHash
 } from "./utils.js"
 
-//Tjek DET UD! localhost:3000/find-user?id=5&test=3&spaghetti=lol
+//Tjek DET UD! localhost:3000/find-film?id=5&test=3&spaghetti=lol
 
 import {initLogin} from "./pages/login/login.js"
 import {initShowAllUsers} from "./pages/showAllUsers/showAllUsers.js";
@@ -14,8 +14,7 @@ import {initAktuelleFilm} from "./pages/aktuelleFilm/aktuelleFilm.js";
 import {initBiografSal} from "./pages/biografSal/biografSal.js";
 import {initAddShowing} from "./pages/addShowing/addShowing.js";
 import {initAddFilm} from "./pages/addFilms/addFilms.js"
-import {initShowFilm} from "./pages/filmPage/filmPage.js";
-import {initFindUser} from "./pages/findUser/findUser.js";
+import {initFindFilm} from "./pages/findFilm/findFilm.js";
 
 window.addEventListener("load", async () => {
 
@@ -26,8 +25,7 @@ window.addEventListener("load", async () => {
     const templateBiografSal = await loadHtml("./pages/biografSal/biografSal.html")
     const templateAddShowing = await loadHtml("./pages/addShowing/addShowing.html")
     const templateAddFilm = await loadHtml("./pages/addFilms/addFilms.html")
-    const templateFilmPage = await loadHtml("./pages/filmPage/filmPage.html")
-    const templateFindUser = await loadHtml("./pages/findUser/findUser.html")
+    const templateFindFilm = await loadHtml("./pages/findFilm/findFilm.html")
 
     const router = new Navigo("/", {hash: true});
     //Not especially nice, BUT MEANT to simplify things. Make the router global so it can be accessed from all js-files
@@ -74,13 +72,10 @@ window.addEventListener("load", async () => {
             }, "/addFilm": () => {
                 renderHtml(templateAddFilm, "content")
                 initAddFilm()
-            }, "/find-user": (match) => {
-                renderHtml(templateFindUser, "content")
-                initFindUser(match)
+            }, "/find-film": (match) => {
+                renderHtml(templateFindFilm, "content")
+                initFindFilm(match)
 
-            }, "/filmPage": (match) => {
-                renderHtml(templateFilmPage, "content")
-                initShowFilm(match)
             }
         })
         .resolve()

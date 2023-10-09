@@ -32,7 +32,7 @@ async function loadMovies() {
 
             // Create "Read More" link
             const readMoreLink = document.createElement("a");
-            readMoreLink.href = `#film${movie.id}`;
+            readMoreLink.href = `#`;
             readMoreLink.setAttribute("data-navigo", "");
             readMoreLink.className = "read-more-btn";
             const readMoreSpan = document.createElement("span");
@@ -41,7 +41,9 @@ async function loadMovies() {
 
             // Create "Billeter" link
             const ticketsLink = document.createElement("a");
-            ticketsLink.href = "#";
+
+            ticketsLink.href = `/find-film?filmId=${movie.id}`;
+
             ticketsLink.setAttribute("data-navigo", "");
             ticketsLink.className = "tickets-btn";
             const ticketsSpan = document.createElement("span");
