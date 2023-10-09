@@ -17,6 +17,7 @@ a {
     text-decoration: none;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     cursor: pointer;
+    font-size: 14px;
 }
 
 #leftNavContent, #rightNavContent {
@@ -236,7 +237,97 @@ body {
     transform: rotate(-45deg);
 }
 
+.cinema-container {
+    display: flex;
+    align-items: flex-start; /* Align items vertically at the top */
+}
+
+#cinemaSeats {
+    /* Your existing styles for cinema seats */
+}
+
+#selectedSeatsContainer {
+    border: 2px solid black;
+    padding: 10px;
+    margin-left: 20px; /* Add some spacing between cinema seats and selected seats */
+    min-width: 150px;
+
+}
+
+#seatsSelected {
+
+}
+
+
 .nav-container input[type="checkbox"]:checked ~ .logo {
     display: none;
 }
 
+.cinema-seat {
+    max-height: 25px;
+    margin: 3px;
+
+}
+.marked-cell{
+    background: green;
+}
+.reserved-seat {
+    background: black;
+}
+
+/* Style for movie details */
+.movie-details {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.movie-details img.film-poster {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Style for showings */
+.movie-showings {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.movie-showings h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Style for individual showings */
+#showing {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+}
+
+.showing-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.showing-card p {
+    margin: 0;
+}
+
+.show {
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 4px;
+   background: rebeccapurple;
+    color: white;
+}
