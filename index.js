@@ -76,7 +76,11 @@ window.addEventListener("load", async () => {
                 renderHtml(templateFindFilm, "content")
                 initFindFilm(match)
 
+            }, "/showing": (match) =>{
+                renderHtml(templateFindFilm, "content")
+                initFindFilm(match)
             }
+            
         })
         .resolve()
 });

@@ -32,61 +32,6 @@ async function getFilmInfo(filmId) {
     } catch (error) {
         console.error('Error fetching film data:', error);
     }
-
-    async function fetchAndDisplayShowings() {
-        try {
-            // Get the movie ID from match.params.filmId
-            const movieId = match.params.filmId;
-
-            // Construct the API URL
-            const apiUrl = `http://localhost:8080/api/showings/findAllByFilmId/${movieId}`;
-
-            // Get the "showing" element where you want to append the data
-            const showingElement = document.getElementById("showing");
-
-            // Make an HTTP GET request to the API
-            const response = await fetch(apiUrl);
-
-            if (!response.ok) {
-                throw new Error(`Failed to fetch data. Status: ${response.status}`);
-            }
-
-            const data = await response.json();
-
-            // Clear the "showing" element
-            showingElement.innerHTML = '';
-
-            // Iterate through the showings and create HTML elements
-            data.forEach((showing) => {
-                const showIdParagraph = document.createElement("p");
-                showIdParagraph.textContent = `Show ID: ${showing.id}`;
-
-                const timeAndDateParagraph = document.createElement("p");
-                timeAndDateParagraph.textContent = `Time and Date: ${showing.timeAndDate}`;
-
-                const ticketPriceParagraph = document.createElement("p");
-                ticketPriceParagraph.textContent = `Ticket Price: $${showing.ticketPrice}`;
-
-                const theaterIdParagraph = document.createElement("p");
-                theaterIdParagraph.textContent = `Theater ID: ${showing.theater.id}`;
-
-                const movieTitleParagraph = document.createElement("p");
-                movieTitleParagraph.textContent = `Movie Title: ${showing.movieTitle}`;
-
-                const showingDiv = document.createElement("div");
-                showingDiv.appendChild(showIdParagraph);
-                showingDiv.appendChild(timeAndDateParagraph);
-                showingDiv.appendChild(ticketPriceParagraph);
-                showingDiv.appendChild(theaterIdParagraph);
-                showingDiv.appendChild(movieTitleParagraph);
-
-                // Append the created div to the "showing" element
-                showingElement.appendChild(showingDiv);
-            });
-        } catch (error) {
-            console.error("Error fetching showings:", error);
-        }
-    }
 }
 
 async function fetchAndDisplayShowings(movieId) {
@@ -125,6 +70,8 @@ async function fetchAndDisplayShowings(movieId) {
 
 
             const showingDiv = document.createElement("div");
+            showingDiv.addEventListener("click", showingInfo);
+            showingDiv.setAttribute("id", showing.id)
             showingDiv.appendChild(showIdParagraph);
             showingDiv.appendChild(timeAndDateParagraph);
             showingDiv.appendChild(ticketPriceParagraph);
@@ -134,8 +81,15 @@ async function fetchAndDisplayShowings(movieId) {
             // Append the created div to the "showing" element
             showingElement.appendChild(showingDiv);
         });
+        
     } catch (error) {
         console.error("Error fetching showings:", error);
     }
+}
+
+function showingInfo(event) {
+    console.log(event.target.id)
+    console.log("showingInfo")
+    window.location.href = `/#/showing/${event.target.id}`
 }
 
