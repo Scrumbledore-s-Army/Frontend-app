@@ -32,7 +32,7 @@ async function loadMovies() {
 
             // Create "Read More" link
             const readMoreLink = document.createElement("a");
-            readMoreLink.href = "#";
+            readMoreLink.href = `#`;
             readMoreLink.setAttribute("data-navigo", "");
             readMoreLink.className = "read-more-btn";
             const readMoreSpan = document.createElement("span");
@@ -41,14 +41,16 @@ async function loadMovies() {
 
             // Create "Billeter" link
             const ticketsLink = document.createElement("a");
-            ticketsLink.href = "#";
+
+            ticketsLink.href = `/find-film?filmId=${movie.id}`;
+
             ticketsLink.setAttribute("data-navigo", "");
             ticketsLink.className = "tickets-btn";
             const ticketsSpan = document.createElement("span");
             ticketsSpan.textContent = "Billeter";
             const ticketsImg = document.createElement("img");
             ticketsImg.className = "ticket-btn-icon";
-            ticketsImg.src = "ticket-outline.svg";
+            ticketsImg.src = "../../images/ticket-outline.svg";
             ticketsLink.appendChild(ticketsSpan);
             ticketsLink.appendChild(ticketsImg);
 
@@ -61,10 +63,23 @@ async function loadMovies() {
 
             // Append the movie card to the container
             movieContainer.appendChild(card);
-        });
+
+             readMoreLink.addEventListener("click", () => {
+                const modal = document.getElementById("myModal");
+                modal.style.display = "block";
+                const plotText = document.getElementById("plot-text");
+                plotText.textContent = movie.plot;
+            });
+        });     
+        
+          // Get the modal close button and add an event listener to close the modal
+          const closeButton = document.getElementsByClassName("close")[0];
+          closeButton.addEventListener("click", () => {
+              const modal = document.getElementById("myModal");
+              modal.style.display = "none";
+          });
     } catch (error) {
         console.error("Error fetching data:", error);
-
     }
 }
 

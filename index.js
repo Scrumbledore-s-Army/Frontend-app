@@ -4,6 +4,8 @@ import {
     setActiveLink, renderHtml, loadHtml, showPopup, adjustForMissingHash
 } from "./utils.js"
 
+//Tjek DET UD! localhost:3000/find-film?id=5&test=3&spaghetti=lol
+
 import {initLogin} from "./pages/login/login.js"
 import {initShowAllUsers} from "./pages/showAllUsers/showAllUsers.js";
 import {initSignUp} from "./pages/signUp/signUp.js";
@@ -11,8 +13,8 @@ import {initSignOut} from "./pages/signOut/initSignOut.js";
 import {initAktuelleFilm} from "./pages/aktuelleFilm/aktuelleFilm.js";
 import {initBiografSal} from "./pages/biografSal/biografSal.js";
 import {initAddShowing} from "./pages/addShowing/addShowing.js";
-
 import {initAddFilm} from "./pages/addFilms/addFilms.js"
+import {initFindFilm} from "./pages/findFilm/findFilm.js";
 
 window.addEventListener("load", async () => {
 
@@ -21,9 +23,9 @@ window.addEventListener("load", async () => {
     const templateSignUp = await loadHtml("./pages/signUp/signUp.html")
     const templateAktuelleFilm = await loadHtml("./pages/aktuelleFilm/aktuelleFilm.html")
     const templateBiografSal = await loadHtml("./pages/biografSal/biografSal.html")
-    const templateAddShowing = await loadHtml("./pages/addShowing/addShowing.html")   
+    const templateAddShowing = await loadHtml("./pages/addShowing/addShowing.html")
     const templateAddFilm = await loadHtml("./pages/addFilms/addFilms.html")
-
+    const templateFindFilm = await loadHtml("./pages/findFilm/findFilm.html")
 
     const router = new Navigo("/", {hash: true});
     //Not especially nice, BUT MEANT to simplify things. Make the router global so it can be accessed from all js-files
@@ -38,59 +40,55 @@ window.addEventListener("load", async () => {
             }
         })
         .on({
+
+
             "/login": () => {
                 showPopup(templateLogin, "content")
                 initLogin()
-              adjustForMissingHash()
-            }
-            ,
-            "/users": () => {
+                adjustForMissingHash()
+            }, "/users": () => {
                 renderHtml(templateShowAllUsers, "content")
                 initShowAllUsers()
                 adjustForMissingHash()
-            }
-            ,
-            "/signOut": () => {
+            }, "/signOut": () => {
                 renderHtml(templateLogin, "content")
                 initSignOut()
                 adjustForMissingHash()
-            }
-            ,
-            "/signUp": () => {
+            }, "/signUp": () => {
                 renderHtml(templateSignUp, "content")
                 initSignUp()
                 adjustForMissingHash()
-            }
-            ,
-            "/aktuelleFilm": () => {
+            }, "/aktuelleFilm": () => {
                 renderHtml(templateAktuelleFilm, "content")
                 initAktuelleFilm()
-            }
-            ,
-            "/biografSal": () => {
+            }, "/biografSal": () => {
                 renderHtml(templateBiografSal, "content")
                 initBiografSal()
                 adjustForMissingHash()
-            }
-            ,
-            "/addShowing": () => {
+            }, "/addShowing": () => {
                 renderHtml(templateAddShowing, "content")
                 initAddShowing()
                 adjustForMissingHash()
-            }
-            ,
-            "/addFilm":()=> {
+            }, "/addFilm": () => {
                 renderHtml(templateAddFilm, "content")
                 initAddFilm()
+            }, "/find-film": (match) => {
+                renderHtml(templateFindFilm, "content")
+                initFindFilm(match)
+
             }
         })
-
         .resolve()
 });
+
 
 window.onerror = function (errorMsg, url, lineNumber, column, errorObj) {
     alert('Error: ' + errorMsg + ' Script: ' + url + ' Line: ' + lineNumber + ' Column: ' + column + ' StackTrace: ' + errorObj);
 }
 
-if (localStorage.getItem('username') !== null)
-    document.getElementById('loggedInAs').innerHTML = `Logged in as ${localStorage.getItem('username')}<a href="signOut" data-navigo style="margin-left: 10px; margin-right: 10px; font-size: 12px;">Sign Out</a>`
+if (localStorage.getItem('username') !== null) document.getElementById('loggedInAs').innerHTML = `Logged in as ${localStorage.getItem('username')}<a href="signOut" data-navigo style="margin-left: 10px; margin-right: 10px; font-size: 12px;">Sign Out</a>`
+
+function initUser(userId) {
+    // Do something with the userId, e.g., display it on the page or perform some action
+    console.log("User ID:", userId);
+}
