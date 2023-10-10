@@ -11,7 +11,9 @@ export function initShowing(match) {
 }
 
 const markedSeats = []; // Array to store marked seat numbers
+let seatsArray = []; // Array to store seat objects
 let showingId;
+
 
 async function getShowing(showingId) {
     const apiUrl = `${API_URL}/showings/${showingId}/includeSeats`;
@@ -32,6 +34,7 @@ function makeseats(showing) {
     let salId = showing.theater.id;
     let showId = showingId;
     seatsData = showing.seats;
+    seatsArray = seatsData;
 
 
 
@@ -90,8 +93,16 @@ seatsData[5].reservation='test'
 }
 
 function goToReservation(){
-    const seatsSelected = markedSeats;
-    console.log(seatsSelected);
+    let seatsSelected =[]
+    for (let i = 0; i < markedSeats.length; i++) {
+        for (let j = 0; j < seatsArray.length; j++) {
+        if (seatsArray[j].seatNumber == markedSeats[i]){
+            seatsSelected.push(seatsArray[j].id)
+        }
+    }
+    }
+
+    console.log("seat selected" + seatsSelected);
     window.location.href = `/#/reservation?seatsSelected=${seatsSelected}&showingId=${showingId}`
 }
 
