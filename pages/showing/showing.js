@@ -8,8 +8,11 @@ export function initShowing(match) {
     document.getElementById("reserve-btn").addEventListener("click", goToReservation)
 
 
+
 }
 
+
+const markedSeatsDbId = [];
 const markedSeats = []; // Array to store marked seat numbers
 let showingId;
 
@@ -48,17 +51,19 @@ seatsData[5].reservation='test'
 
     // Function to toggle seat status
     function toggleSeatStatus(seat, seatData) {
-        if (seatData.reservation !== null) {
+        if (seatData.isReserved === true) {
             // If the seat is reserved, do nothing
             return;
         }
 
         const cell = seat.parentElement; // Get the parent cell
         const seatNumber = seatData.seatNumber;
+        const seatId = seatData.id;
 
         cell.classList.toggle('marked-cell');
 
         if (cell.classList.contains('marked-cell')) {
+            markedSeatsDbId.push(seatId);
             markedSeats.push(seatNumber); // Add seat to the markedSeats array
         } else {
             const index = markedSeats.indexOf(seatNumber);
@@ -85,7 +90,7 @@ seatsData[5].reservation='test'
             seat.setAttribute('src', '../../images/cinema-seat-svgrepo-com.svg');
             seat.classList.add('cinema-seat');
 
-            if (seatData.reservation !== null) {
+            if (seatData.isReserved === true) {
                 seat.classList.add('reserved-seat');
             } else {
                 // Add a click event listener to the seat
@@ -112,6 +117,8 @@ seatsData[5].reservation='test'
 
 function goToReservation(){
     const seatsSelected = markedSeats;
+
+    
     console.log(seatsSelected);
-    window.location.href = `/#/reservation?seatsSelected=${seatsSelected}&showingId=${showingId}`
+    window.location.href = `/#/reservation?seatsSelected=${markedSeatsDbId}&showingId=${showingId}`
 }
