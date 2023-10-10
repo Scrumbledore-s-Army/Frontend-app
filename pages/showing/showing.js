@@ -79,7 +79,7 @@ seatsData[5].reservation='test'
             for (let j = 0; j < showing.theater.rowLength; j++) {
                 const cell = document.createElement('td');
                 const seat = document.createElement('img');
-                const seatData = seatsData[i * 12 + j];
+                const seatData = seatsData[i * showing.theater.rowLength + j];
 
             // Set the cinema seat image source
             seat.setAttribute('src', '../../images/cinema-seat-svgrepo-com.svg');
