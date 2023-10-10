@@ -78,9 +78,11 @@ async function loadMovies() {
                 modal.style.display = "block";
                 const plotText = document.getElementById("plot-text");
                 plotText.textContent = movie.plot;
+            
+                // Set the title inside the event listener
+                const h1Element = document.querySelector(".modal-content-film h1");
+                h1Element.textContent = movie.title;
             });
-            const h1Element = document.querySelector(".modal-content-film h1");
-            h1Element.textContent = movie.title;
         });
 
 
