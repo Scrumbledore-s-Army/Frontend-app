@@ -2,13 +2,16 @@ import { API_URL } from "../../settings.js";
 import { handleHttpErrors, makeOptions } from "../../utils.js";
 
 export function initShowing(match) {
-
+    showingId = match.params.showingId;
     getShowing(match.params.showingId);
 
+    document.getElementById("reserve-btn").addEventListener("click", goToReservation)
 
     
 }
 
+const markedSeats = []; // Array to store marked seat numbers
+let showingId;
 
 async function getShowing(showingId){
     const apiUrl = `${API_URL}/showings/${showingId}/includeSeats`;
@@ -26,7 +29,7 @@ function makeseats(showing){
     let ticketReservations = [];
     let movieTitle = showing.movieTitle;
     let salId = showing.theater.id;
-    let showId = showing.id;
+    let showId = showingId;
     seatsData = showing.seats;
 
 
@@ -40,7 +43,6 @@ function makeseats(showing){
         const table = document.createElement('table');
         tableCreated = true; // Set the flag to true after creating the table
 
-        const markedSeats = []; // Array to store marked seat numbers
 
         // Function to toggle seat status
         function toggleSeatStatus(seat, seatData) {
@@ -75,7 +77,7 @@ function makeseats(showing){
             for (let j = 0; j < showing.theater.rowLength; j++) {
                 const cell = document.createElement('td');
                 const seat = document.createElement('img');
-                const seatData = seatsData[i * 12 + j];
+                const seatData = seatsData[i * showing.theater.rowLength + j];
 
                 // Set the cinema seat image source
                 seat.setAttribute('src', '../../images/cinema-seat-svgrepo-com.svg');
@@ -104,4 +106,10 @@ function makeseats(showing){
         document.getElementById('movieTitle').innerText=`Filmtitel: ${movieTitle}`;
         document.getElementById('salId').innerText=`Sal: ${salId}`;
         document.getElementById('showId').innerText=`Forestillings ID: ${showId}`
+}
+
+function goToReservation(){
+    const seatsSelected = markedSeats;
+    console.log(seatsSelected);
+    window.location.href = `/#/reservation?seatsSelected=${seatsSelected}&showingId=${showingId}`
 }

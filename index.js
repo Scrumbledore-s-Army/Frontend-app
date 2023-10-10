@@ -14,6 +14,7 @@ import {initAddShowing} from "./pages/addShowing/addShowing.js";
 import {initAddFilm} from "./pages/addFilms/addFilms.js"
 import {initFindFilm} from "./pages/findFilm/findFilm.js";
 import {initShowing} from "./pages/showing/showing.js";
+import {initReservation} from "./pages/reservation/reservation.js";
 
 window.addEventListener("load", async () => {
 
@@ -26,6 +27,7 @@ window.addEventListener("load", async () => {
     const templateAddFilm = await loadHtml("./pages/addFilms/addFilms.html")
     const templateFindFilm = await loadHtml("./pages/findFilm/findFilm.html")
     const templateShowing = await loadHtml("./pages/showing/showing.html")
+    const templateReservation = await loadHtml("./pages/reservation/reservation.html")
 
     const router = new Navigo("/", {hash: true});
     //Not especially nice, BUT MEANT to simplify things. Make the router global so it can be accessed from all js-files
@@ -78,6 +80,9 @@ window.addEventListener("load", async () => {
             }, "/showing": (match) => {
                 renderHtml(templateShowing, "content")
                 initShowing(match)
+            }, "/reservation": (match) => {
+                renderHtml(templateReservation, "content")
+                initReservation(match)
             }
             
         })
