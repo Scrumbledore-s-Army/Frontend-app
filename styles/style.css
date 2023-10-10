@@ -297,3 +297,27 @@ body {
 #add-showing-form {
     margin-bottom: 20px;
 }
+.movie-details {
+    display: flex;
+    align-items: center;
+    max-width: 70%;
+}
+
+.movie-details img {
+    max-height: 100%; /* Make the image fill the height of the container */
+    margin-right: 20px;
+}
+
+.movie-details ul {
+    list-style-type: none;
+    padding: 20;
+    display: flex; /* Use flexbox for the list */
+    flex-direction: column; /* Stack list items vertically */
+    align-items: center;
+    min-width: 20%;
+}
+
+.movie-details p {
+    max-width: 40%;
+    justify-content: center;
+}
