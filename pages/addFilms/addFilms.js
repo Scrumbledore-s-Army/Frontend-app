@@ -1,10 +1,11 @@
-import { sanitizeStringWithTableRows, handleHttpErrors, makeOptions} from "../../utils.js"
+import { sanitizeStringWithTableRows, handleHttpErrors, makeOptions, checkLogin} from "../../utils.js"
 
 const url = "http://localhost:8080/api/films"
 
 const omdbUrl= "http://www.omdbapi.com/?apikey=6dfe795d&plot=full&i="
 
 export function initAddFilm(){
+
     document.querySelector("#inspect-btn").addEventListener("click", async () => inspectFilm())
     document.querySelector("#add-film-btn").addEventListener("click", async () => addFilm())
 }
@@ -37,11 +38,7 @@ async function addFilm(){
     const token = localStorage.getItem('token');
     try{
 
-        if (!token) {
-            console.error('Token not found. Please log in.');
-            return;
-        }
-
+        checkLogin()
         const response = await fetch(url + "/" + filmId, makeOptions("POST", null, true))
         
         if(response.ok){
