@@ -2,12 +2,12 @@ import { API_URL } from "../../settings.js";
 import { handleHttpErrors, makeOptions } from "../../utils.js";
 
 export function initShowing(match) {
+    
     showingId = match.params.showingId;
     getShowing(match.params.showingId);
 
     document.getElementById("reserve-btn").addEventListener("click", goToReservation)
-
-
+    
 }
 
 const markedSeats = []; // Array to store marked seat numbers
@@ -20,6 +20,7 @@ async function getShowing(showingId) {
     console.log(showing);
 
     makeseats(showing);
+    setMarkedSeats();
 }
 
 function makeseats(showing) {
@@ -46,31 +47,7 @@ seatsData[5].reservation='test'
     tableCreated = true; // Set the flag to true after creating the table
 
 
-    // Function to toggle seat status
-    function toggleSeatStatus(seat, seatData) {
-        if (seatData.reservation !== null) {
-            // If the seat is reserved, do nothing
-            return;
-        }
-
-        const cell = seat.parentElement; // Get the parent cell
-        const seatNumber = seatData.seatNumber;
-
-        cell.classList.toggle('marked-cell');
-
-        if (cell.classList.contains('marked-cell')) {
-            markedSeats.push(seatNumber); // Add seat to the markedSeats array
-        } else {
-            const index = markedSeats.indexOf(seatNumber);
-            if (index !== -1) {
-                markedSeats.splice(index, 1); // Remove seat from the markedSeats array
-            }
-        }
-
-        console.log('Sæder valgt:', markedSeats.map(seat => `seat ${seat}`).join(', '));
-
-        document.getElementById("seatsSelected").innerHTML = 'Sæder valgt: <br>    ' + markedSeats.map(seat => `- ${seat}<br>`).join('');
-    }
+    
     const theaterRows = showing.theater.seatCount / showing.theater.rowLength
     // Loop to create rows and cells
     for (let i = 0; i < theaterRows; i++) {
@@ -84,6 +61,7 @@ seatsData[5].reservation='test'
             // Set the cinema seat image source
             seat.setAttribute('src', '../../images/cinema-seat-svgrepo-com.svg');
             seat.classList.add('cinema-seat');
+            seat.setAttribute('id', seatData.seatNumber);
 
             if (seatData.reservation !== null) {
                 seat.classList.add('reserved-seat');
@@ -108,10 +86,53 @@ seatsData[5].reservation='test'
     document.getElementById('movieTitle').innerText = `Filmtitel: ${movieTitle}`;
     document.getElementById('salId').innerText = `Sal: ${salId}`;
     document.getElementById('showId').innerText = `Forestillings ID: ${showId}`
+    
 }
 
 function goToReservation(){
     const seatsSelected = markedSeats;
     console.log(seatsSelected);
     window.location.href = `/#/reservation?seatsSelected=${seatsSelected}&showingId=${showingId}`
+}
+
+// Function to toggle seat status
+function toggleSeatStatus(seat, seatData) {
+    if (seatData.reservation !== null) {
+        // If the seat is reserved, do nothing
+        return;
+    }
+
+    const cell = seat.parentElement; // Get the parent cell
+    const seatNumber = seatData.seatNumber;
+
+    cell.classList.toggle('marked-cell');
+
+    if (cell.classList.contains('marked-cell')) {
+        markedSeats.push(seatNumber); // Add seat to the markedSeats array
+    } else {
+        const index = markedSeats.indexOf(seatNumber);
+        if (index !== -1) {
+            markedSeats.splice(index, 1); // Remove seat from the markedSeats array
+        }
+    }
+
+    console.log('Sæder valgt:', markedSeats.map(seat => `seat ${seat}`).join(', '));
+
+    document.getElementById("seatsSelected").innerHTML = 'Sæder valgt: <br>    ' + markedSeats.map(seat => `- ${seat}<br>`).join('');
+}
+
+function setMarkedSeats(){
+    const seatsSelected = markedSeats;
+    console.log(seatsSelected)
+    for (let i = 0; i < seatsSelected.length; i++) {
+        const s = document.getElementById(seatsSelected[i]);
+        console.log(s)
+        const cell = s.parentElement
+
+        cell.classList.toggle('marked-cell');
+        console.log(cell)
+        
+    }
+  
+
 }
