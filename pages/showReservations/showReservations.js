@@ -27,11 +27,11 @@ export async function initShowReservations() {
             reservationDiv.classList.add('reservation-card');
 
             reservationDiv.innerHTML = `
-                <p>Customer Email: ${reservation.customerEmail}</p>
-                <p>Customer Username: ${reservation.customerUsername}</p>
+                <p>Email: ${reservation.customerEmail}</p>
+                <p>Username: ${reservation.customerUsername}</p>
                 <p>Theater ID: ${reservation.theaterId}</p>
                 <p>Showing Date: ${reservation.showingDate}</p>
-                <p>Total Price: $${reservation.totalPrice}</p>
+                <p>Total Price: ${reservation.totalPrice}</p>
             `;
 
             if (reservation.seats.length > 0) {
@@ -41,7 +41,7 @@ export async function initShowReservations() {
 
                 reservation.seats.forEach(seat => {
                     const seatInfo = document.createElement('p');
-                    seatInfo.textContent = `Seat Number: ${seat.seatNumber}, Reserved: ${seat.isReserved ? 'Yes' : 'No'}`;
+                    seatInfo.textContent = `Seat Number: ${seat.seatNumber}`;
                     seatsDiv.appendChild(seatInfo);
                 });
 
