@@ -9,7 +9,7 @@ import { initAktuelleFilm } from "../aktuelleFilm/aktuelleFilm.js";
 
 export function initHome() {
   showMovies();
-  fetchAndDisplayMovies();
+  //fetchAndDisplayMovies();
   fetchAndDiscplayMovies2();
 }
 
@@ -51,6 +51,8 @@ async function fetchAndDiscplayMovies2() {
   const items = [];
   let currentItemIndex = 0;
 
+  bannerItems.innerHTML = "";
+
   const itemWidth = bannerContainer.clientWidth;
 
   movies.forEach((movie) => {
@@ -60,7 +62,28 @@ async function fetchAndDiscplayMovies2() {
   items.forEach((item) => {
     const bannerItem = document.createElement("div");
     bannerItem.classList.add("banner-item");
-    bannerItem.style.backgroundImage = `url(${item.poster})`;
+    const bannerPosterLink = document.createElement("a");
+    bannerPosterLink.href = "#/find-film?filmId=" + item.id;
+    const bannerPoster = document.createElement("img");
+    bannerPoster.src = item.poster;
+    bannerPoster.alt = item.title;
+    bannerPoster.classList.add("banner-item-poster");
+    bannerPosterLink.appendChild(bannerPoster);
+
+    const bannerItemDiv = document.createElement("div");
+    bannerItemDiv.classList.add("banner-item-div");
+    const bannerHeader = document.createElement("h1");
+    bannerHeader.classList.add("banner-item-header");
+    bannerHeader.textContent = item.title;
+    const bannerText = document.createElement("p");
+    bannerText.classList.add("banner-item-description");
+    bannerText.textContent = item.plot;
+
+    bannerItemDiv.appendChild(bannerHeader);
+    bannerItemDiv.appendChild(bannerText);
+
+    bannerItem.appendChild(bannerPosterLink);
+    bannerItem.appendChild(bannerItemDiv);
     bannerItems.appendChild(bannerItem);
   })
 console.log(items)
