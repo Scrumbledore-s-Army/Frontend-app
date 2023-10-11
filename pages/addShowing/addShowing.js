@@ -65,7 +65,7 @@ async function inspectFilm(){
   .then(res => handleHttpErrors(res))
   .then(film => {
       const markUp = `
-      <div class="movie-details" style="margin-left: auto; margin-right: auto;"><img src="${film.poster}">
+      <div class="movie-details-container" style="margin-left: auto; margin-right: auto;"><img src="${film.poster}">
       <ul>
         <li>Titel: ${film.title}</li>
         <li>Instruktør: ${film.director}</li>
