@@ -7,9 +7,11 @@ export function initShowing(match) {
     getShowing(match.params.showingId);
 
     document.getElementById("reserve-btn").addEventListener("click", goToReservation)
-    
+
 }
 
+
+const markedSeatsDbId = [];
 const markedSeats = []; // Array to store marked seat numbers
 let seatsArray = []; // Array to store seat objects
 let showingId;
@@ -49,8 +51,6 @@ seatsData[5].reservation='test'
     const table = document.createElement('table');
     tableCreated = true; // Set the flag to true after creating the table
 
-
-    
     const theaterRows = showing.theater.seatCount / showing.theater.rowLength
     // Loop to create rows and cells
     for (let i = 0; i < theaterRows; i++) {
@@ -66,7 +66,7 @@ seatsData[5].reservation='test'
             seat.classList.add('cinema-seat');
             seat.setAttribute('id', seatData.seatNumber);
 
-            if (seatData.reservation !== null) {
+            if (seatData.isReserved === true) {
                 seat.classList.add('reserved-seat');
             } else {
                 // Add a click event listener to the seat
@@ -93,6 +93,8 @@ seatsData[5].reservation='test'
 }
 
 function goToReservation(){
+    const seatsSelected = markedSeats;
+
     let seatsSelected =[]
     for (let i = 0; i < markedSeats.length; i++) {
         for (let j = 0; j < seatsArray.length; j++) {
@@ -145,5 +147,4 @@ function setMarkedSeats(){
         
     }
   
-
 }
