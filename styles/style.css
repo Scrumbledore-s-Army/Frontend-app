@@ -4,8 +4,11 @@
     box-sizing: border-box;
 }
 
+
+
 body {
     overflow-x: hidden;
+    --primary-color: #4B2990;
 }
 
 #login-form {
@@ -286,3 +289,55 @@ body {
     text-decoration: none;
     cursor: pointer;
   }
+
+  /* Add a new class for the movie banner */
+.movie-banner {
+    z-index: 0;
+    position: relative; /* Use relative positioning */
+    width: 100%; /* Ensure full width */
+    height: 500px; /* Set the banner height */
+    overflow-x: auto; /* Add horizontal scrolling */
+    overflow-y: hidden; /* Hide vertical scrolling */
+    white-space: nowrap; /* Prevent line breaks for inline elements */
+    flex-wrap: nowrap; /* Prevent items from wrapping */
+    background-color: rgb(99, 78, 99);
+
+}
+
+/* Style for individual movie posters within the banner */
+.movie-poster {
+    display: inline-block; /* Display posters in a line */
+    width: 250px; /* Adjust the width as needed */
+    margin-right: 20px; /* Add margin between posters */
+    vertical-align: top; /* Align posters to the top */
+}
+
+/* Optional: Hide horizontal scrollbar */
+.movie-banner::-webkit-scrollbar {
+    display: none;
+}
+
+.banner-items {
+    display: flex; /* Arrange items horizontally */
+    transition: transform 0.5s ease-in-out; /* Smooth transition for swiping */
+    gap: 40px; /* Add gap between items */
+    justify-content: center;
+    margin-top: 25px;
+  }
+
+.banner-item-header{
+    text-align: left;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.banner-item-description{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.banner-item-poster{
+    
+    border-radius: 5px;
+}
