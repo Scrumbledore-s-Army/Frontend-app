@@ -363,6 +363,7 @@ body {
 
 .home-header{
     background-color: var(--secondary-color);
+    text-align: left;
 }
 
 .home-text{
