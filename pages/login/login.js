@@ -46,6 +46,8 @@ async function login() {
       ).innerHTML = `Logged in as ${localStorage.getItem(
         "username"
       )}<a href="signOut" data-navigo style="margin-left: 10px; margin-right: 10px; font-size: 12px;">Sign Out</a>`;
+      window.router.navigate("/#")
+      toggleLoginStatus()
     } else {
       loggedInMessage.textContent =
         "Login failed. Please check your credentials.";
@@ -53,5 +55,24 @@ async function login() {
   } catch (error) {
     console.error("Error:", error);
     loggedInMessage.textContent = "An error occurred during login.";
+  }
+
+  
+}
+
+export function toggleLoginStatus(){
+
+
+  const adminListItems = document.querySelectorAll(".admin-only");
+
+  let isAdmin = false;
+  
+  console.log(localStorage.getItem("roles"));
+
+  if (localStorage.getItem("roles")){
+    isAdmin = localStorage.getItem("roles").includes("ADMIN");
+  }
+  for (let i = 0; i < adminListItems.length; i++){
+    adminListItems[i].style.display = isAdmin ? "block" : "none";
   }
 }
