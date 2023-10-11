@@ -93,7 +93,6 @@ seatsData[5].reservation='test'
 }
 
 function goToReservation(){
-    const seatsSelected = markedSeats;
 
     let seatsSelected =[]
     for (let i = 0; i < markedSeats.length; i++) {
