@@ -64,15 +64,21 @@ export function toggleLoginStatus(){
 
 
   const adminListItems = document.querySelectorAll(".admin-only");
+  const userListItems = document.querySelectorAll(".user-only");
 
   let isAdmin = false;
+  let isUser = false;
   
   console.log(localStorage.getItem("roles"));
 
   if (localStorage.getItem("roles")){
     isAdmin = localStorage.getItem("roles").includes("ADMIN");
+    isUser = localStorage.getItem("roles").includes("USER");
   }
   for (let i = 0; i < adminListItems.length; i++){
     adminListItems[i].style.display = isAdmin ? "block" : "none";
+  }
+  for (let i = 0; i < userListItems.length; i++){
+    userListItems[i].style.display = isUser ? "block" : "none";
   }
 }

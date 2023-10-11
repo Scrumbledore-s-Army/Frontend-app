@@ -405,3 +405,35 @@ body {
     max-width: 40%;
     justify-content: center;
 }
+
+.reservation-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.reservation-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.reservation-seats {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.reservation-info {
+    margin: 0;
+}
+
+.reservation-title {
+    font-weight: bold;
+}
+
+.reservation-seat-info {
+    margin: 0;
+}

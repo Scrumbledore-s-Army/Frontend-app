@@ -16,6 +16,7 @@ import {initFindFilm} from "./pages/findFilm/findFilm.js";
 import {initShowing} from "./pages/showing/showing.js";
 import {initReservation} from "./pages/reservation/reservation.js";
 import {initHome} from "./pages/home/home.js";
+import { initShowReservations } from "./pages/showReservations/showReservations.js";
 
 window.addEventListener("load", async () => {
 
@@ -30,6 +31,7 @@ window.addEventListener("load", async () => {
     const templateShowing = await loadHtml("./pages/showing/showing.html")
     const templateReservation = await loadHtml("./pages/reservation/reservation.html")
     const templateHome = await loadHtml("./pages/home/home.html")
+    const templateShowReservations = await loadHtml("./pages/showReservations/showReservations.html")
 
     toggleLoginStatus()
 
@@ -91,6 +93,9 @@ window.addEventListener("load", async () => {
             }, "/reservation": (match) => {
                 renderHtml(templateReservation, "content")
                 initReservation(match)
+            }, "/showReservations": () => {
+                renderHtml(templateShowReservations, "content")
+                initShowReservations()
             }
             
         })
