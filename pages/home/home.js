@@ -55,13 +55,18 @@ async function fetchAndDiscplayMovies2() {
 
   const itemWidth = bannerContainer.clientWidth;
 
-  movies.forEach((movie) => {
-    items.push(movie);
-  })
-
+  for (let i = 0; i < 4; i++) {
+    const randomIndex = Math.floor(Math.random() * movies.length);
+    items.push(movies[randomIndex]);
+    movies.splice(randomIndex,1)
+  }
+ 
+  
   items.forEach((item) => {
+    
     const bannerItem = document.createElement("div");
     bannerItem.classList.add("banner-item");
+
     const bannerPosterLink = document.createElement("a");
     bannerPosterLink.href = "#/find-film?filmId=" + item.id;
     const bannerPoster = document.createElement("img");
@@ -87,29 +92,6 @@ async function fetchAndDiscplayMovies2() {
     bannerItems.appendChild(bannerItem);
   })
 console.log(items)
-  // Function to display the current item
-  function showCurrentItem() {
-    bannerItems.style.transform = `translateX(-${
-      currentItemIndex * itemWidth
-    }px)`;
-  }
 
-  // Function to handle swipe right
-  function swipeRight() {
-    currentItemIndex = (currentItemIndex - 1 + items.length) % items.length;
-    showCurrentItem();
-  }
-
-  // Function to handle swipe left
-  function swipeLeft() {
-    currentItemIndex = (currentItemIndex + 1) % items.length;
-    showCurrentItem();
-  }
-
-  // Event listeners for touch or click events
-  bannerContainer.addEventListener("swiperight", swipeRight);
-  bannerContainer.addEventListener("swipeleft", swipeLeft);
-
-  // Display the initial item
-  showCurrentItem();
+  
 }

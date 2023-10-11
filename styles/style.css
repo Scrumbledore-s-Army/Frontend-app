@@ -298,7 +298,7 @@ body {
     position: relative; /* Use relative positioning */
     width: 100%; /* Ensure full width */
     height: 520px; /* Set the banner height */
-    overflow-x: auto; /* Add horizontal scrolling */
+    overflow-x: hidden; /* Add horizontal scrolling */
     overflow-y: hidden; /* Hide vertical scrolling */
     white-space: nowrap; /* Prevent line breaks for inline elements */
     flex-wrap: nowrap; /* Prevent items from wrapping */
