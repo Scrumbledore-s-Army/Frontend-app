@@ -4,8 +4,6 @@ import {
     setActiveLink, renderHtml, loadHtml, showPopup, adjustForMissingHash
 } from "./utils.js"
 
-//Tjek DET UD! localhost:3000/find-film?id=5&test=3&spaghetti=lol
-
 import {initLogin} from "./pages/login/login.js"
 import {initShowAllUsers} from "./pages/showAllUsers/showAllUsers.js";
 import {initSignUp} from "./pages/signUp/signUp.js";
@@ -15,6 +13,8 @@ import {initBiografSal} from "./pages/biografSal/biografSal.js";
 import {initAddShowing} from "./pages/addShowing/addShowing.js";
 import {initAddFilm} from "./pages/addFilms/addFilms.js"
 import {initFindFilm} from "./pages/findFilm/findFilm.js";
+import {initShowing} from "./pages/showing/showing.js";
+import {initReservation} from "./pages/reservation/reservation.js";
 
 window.addEventListener("load", async () => {
 
@@ -26,6 +26,8 @@ window.addEventListener("load", async () => {
     const templateAddShowing = await loadHtml("./pages/addShowing/addShowing.html")
     const templateAddFilm = await loadHtml("./pages/addFilms/addFilms.html")
     const templateFindFilm = await loadHtml("./pages/findFilm/findFilm.html")
+    const templateShowing = await loadHtml("./pages/showing/showing.html")
+    const templateReservation = await loadHtml("./pages/reservation/reservation.html")
 
     const router = new Navigo("/", {hash: true});
     //Not especially nice, BUT MEANT to simplify things. Make the router global so it can be accessed from all js-files
@@ -75,8 +77,14 @@ window.addEventListener("load", async () => {
             }, "/find-film": (match) => {
                 renderHtml(templateFindFilm, "content")
                 initFindFilm(match)
-
+            }, "/showing": (match) => {
+                renderHtml(templateShowing, "content")
+                initShowing(match)
+            }, "/reservation": (match) => {
+                renderHtml(templateReservation, "content")
+                initReservation(match)
             }
+            
         })
         .resolve()
 });

@@ -32,9 +32,6 @@ async function loadMovies() {
             } else {
                 titleSpan.textContent = movie.title;
             }
-            
-            
-           
 
             // Create a div for the movie buttons container
             const btnsContainerDiv = document.createElement("div");
@@ -74,20 +71,28 @@ async function loadMovies() {
             // Append the movie card to the container
             movieContainer.appendChild(card);
 
-             readMoreLink.addEventListener("click", () => {
+
+
+            readMoreLink.addEventListener("click", () => {
                 const modal = document.getElementById("myModal");
                 modal.style.display = "block";
                 const plotText = document.getElementById("plot-text");
                 plotText.textContent = movie.plot;
+            
+                // Set the title inside the event listener
+                const h1Element = document.querySelector(".modal-content-film h1");
+                h1Element.textContent = movie.title;
             });
-        });     
-        
-          // Get the modal close button and add an event listener to close the modal
-          const closeButton = document.getElementsByClassName("close")[0];
-          closeButton.addEventListener("click", () => {
-              const modal = document.getElementById("myModal");
-              modal.style.display = "none";
-          });
+        });
+
+
+
+        // Get the modal close button and add an event listener to close the modal
+        const closeButton = document.getElementsByClassName("close")[0];
+        closeButton.addEventListener("click", () => {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        });
     } catch (error) {
         console.error("Error fetching data:", error);
     }

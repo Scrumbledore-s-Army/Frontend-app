@@ -125,3 +125,12 @@ export function showPopup(template, contentId){
   content.append(template)
 }
 
+
+export function checkLogin() {
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+      console.error('Token not found. Please log in.');
+      return;
+  }
+}
