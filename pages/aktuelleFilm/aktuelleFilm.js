@@ -87,13 +87,21 @@ async function loadMovies() {
             });
         });
 
-
-
         // Get the modal close button and add an event listener to close the modal
         const closeButton = document.getElementsByClassName("close")[0];
         closeButton.addEventListener("click", () => {
+            closeModal();
+        });
+        function closeModal() {
             const modal = document.getElementById("myModal");
             modal.style.display = "none";
+        }
+
+        document.addEventListener("click", (event) => {
+            const modal = document.getElementById("myModal");
+            if (event.target === modal) {
+                closeModal();
+            }
         });
     } catch (error) {
         console.error("Error fetching data:", error);
