@@ -120,6 +120,14 @@ const links = document.querySelectorAll('.menu-items a');
 const checkbox = document.querySelector('.checkbox');
 const logoLink = document.querySelector('#logo_link');
 
+
+document.addEventListener("click", (event) => {
+    const leftnav = document.querySelector('.menu-items');
+    if (event.target !== leftnav && event.target !== checkbox) {
+        checkbox.checked = false;
+    }
+});
+
 links.forEach(link => {
   link.addEventListener('click', () => {
     checkbox.checked = false;
