@@ -22,8 +22,8 @@ export function initReservation(match) {
         seatIds: seats
     };
 
-
-    fetch('http://localhost:8080/api/reservations', {
+    const url = API_URL + "/reservations";
+    fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
