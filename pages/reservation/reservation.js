@@ -25,6 +25,8 @@ export function initReservation(match) {
         seatIds: seats
     };
 
+
+
     addReservation(reservationData)
         .then(data => {
             reservationId = data; // Assuming data is already an integer
@@ -57,8 +59,9 @@ function print(){
 
 }
 
+  const url = API_URL + "/reservations";
 function addReservation(reservationData) {
-    return fetch('http://localhost:8080/api/reservations', {
+    return fetch(url', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
