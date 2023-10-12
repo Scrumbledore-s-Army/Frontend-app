@@ -26,6 +26,14 @@ async function loadMovies() {
     const data = await response.json();
     const select = document.querySelector("#film-input");
 
+    // Clear existing options except for the default option
+    select.innerHTML = '';
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.style = 'font-style: italic;';
+    defaultOption.text = 'Select Movie';
+    select.appendChild(defaultOption);
+
     data.forEach(movie => {
       const option = document.createElement('option');
       option.value = movie.id; 
@@ -46,6 +54,14 @@ try {
   const data = await response.json();
   const select = document.querySelector("#theater-input")
 
+  // Clear existing options except for the default option
+  select.innerHTML = '';
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.style = 'font-style: italic;';
+  defaultOption.text = 'Select Theater';
+  select.appendChild(defaultOption);
+
   data.forEach(theater =>{
       const option = document.createElement('option')
       option.value = theater.id
@@ -65,7 +81,7 @@ async function inspectFilm(){
   .then(res => handleHttpErrors(res))
   .then(film => {
       const markUp = `
-      <div class="movie-details-container" style="margin-left: auto; margin-right: auto;"><img src="${film.poster}">
+      <div class="movie-details" style="margin-left: auto; margin-right: auto;"><img src="${film.poster}">
       <ul>
         <li>Titel: ${film.title}</li>
         <li>Instruktør: ${film.director}</li>
@@ -100,8 +116,6 @@ async function addShowing(){
         ticketPrice: showingTicketPrice,
         timeAndDate: showingTimeAndDate
     }
-
-
 
     try{
         const newOpt = makeOptions("POST", newShowing, token);
