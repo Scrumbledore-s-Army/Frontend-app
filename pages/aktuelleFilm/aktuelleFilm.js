@@ -1,3 +1,5 @@
+import { API_URL } from "../../settings.js";
+
 export function initAktuelleFilm() {
     loadMovies();
 }
@@ -8,7 +10,8 @@ async function loadMovies() {
         const movieContainer = document.getElementById("movie-container");
         movieContainer.innerHTML = '';
         // Fetch the JSON data from the API
-        const response = await fetch("http://localhost:8080/api/films");
+        const url = API_URL + "/films";
+        const response = await fetch(url);
         const data = await response.json();
 
         // Loop through the data and create movie cards
@@ -23,7 +26,7 @@ async function loadMovies() {
 
             // Create a span for the movie title
             const titleSpan = document.createElement("span");
-            const maxLength = 32;
+            const maxLength = 30;
             titleSpan.className = "movie-title";
             titleSpan.textContent = movie.title;
 
@@ -39,7 +42,6 @@ async function loadMovies() {
 
             // Create "Read More" link
             const readMoreLink = document.createElement("a");
-            readMoreLink.href = `#`;
             readMoreLink.setAttribute("data-navigo", "");
             readMoreLink.className = "read-more-btn";
             const readMoreSpan = document.createElement("span");

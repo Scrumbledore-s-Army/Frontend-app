@@ -20,13 +20,22 @@ export function initAddShowing() {
 
 async function loadMovies() {
   try {
-    const response = await fetch("http://localhost:8080/api/films");
+    const url = API_URL + "/films";
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error('Request failed');
     }
 
     const data = await response.json();
     const select = document.querySelector("#film-input");
+
+    // Clear existing options except for the default option
+    select.innerHTML = '';
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.style = 'font-style: italic;';
+    defaultOption.text = 'Select Movie';
+    select.appendChild(defaultOption);
 
     data.forEach(movie => {
       const option = document.createElement('option');
@@ -41,12 +50,21 @@ async function loadMovies() {
 
 async function loadTheaters(){
 try {
-  const response = await fetch("http://localhost:8080/api/theaters")
+  const url = API_URL + "/theaters";
+  const response = await fetch(url)
   if(!response.ok){
       throw new Error('Request failed')
   }
   const data = await response.json();
   const select = document.querySelector("#theater-input")
+
+  // Clear existing options except for the default option
+  select.innerHTML = '';
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.style = 'font-style: italic;';
+  defaultOption.text = 'Select Theater';
+  select.appendChild(defaultOption);
 
   data.forEach(theater =>{
       const option = document.createElement('option')
@@ -63,7 +81,8 @@ try {
 async function inspectFilm(){
   const filmId = document.getElementById("film-input").value;
 
-  await fetch("http://localhost:8080/api/films/" + filmId)
+  const url = API_URL + "/films/" + filmId;
+  await fetch(url)
   .then(res => handleHttpErrors(res))
   .then(film => {
       const markUp = `
@@ -102,8 +121,6 @@ async function addShowing(){
         ticketPrice: showingTicketPrice,
         timeAndDate: showingTimeAndDate
     }
-
-
 
     try{
         const newOpt = makeOptions("POST", newShowing, token);

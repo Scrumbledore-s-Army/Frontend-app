@@ -4,7 +4,7 @@ import {
     setActiveLink, renderHtml, loadHtml, showPopup, adjustForMissingHash
 } from "./utils.js"
 
-import {initLogin} from "./pages/login/login.js"
+import {initLogin, toggleLoginStatus} from "./pages/login/login.js"
 import {initShowAllUsers} from "./pages/showAllUsers/showAllUsers.js";
 import {initSignUp} from "./pages/signUp/signUp.js";
 import {initSignOut} from "./pages/signOut/initSignOut.js";
@@ -15,6 +15,8 @@ import {initAddFilm} from "./pages/addFilms/addFilms.js"
 import {initFindFilm} from "./pages/findFilm/findFilm.js";
 import {initShowing} from "./pages/showing/showing.js";
 import {initReservation} from "./pages/reservation/reservation.js";
+import {initHome} from "./pages/home/home.js";
+import { initShowReservations } from "./pages/showReservations/showReservations.js";
 
 window.addEventListener("load", async () => {
 
@@ -28,6 +30,10 @@ window.addEventListener("load", async () => {
     const templateFindFilm = await loadHtml("./pages/findFilm/findFilm.html")
     const templateShowing = await loadHtml("./pages/showing/showing.html")
     const templateReservation = await loadHtml("./pages/reservation/reservation.html")
+    const templateHome = await loadHtml("./pages/home/home.html")
+    const templateShowReservations = await loadHtml("./pages/showReservations/showReservations.html")
+
+    toggleLoginStatus()
 
     const router = new Navigo("/", {hash: true});
     //Not especially nice, BUT MEANT to simplify things. Make the router global so it can be accessed from all js-files
@@ -38,13 +44,17 @@ window.addEventListener("load", async () => {
             before(done, match) {
                 setActiveLink("menu", match.url)
                 done()
+                burgerMenuHide()
                 adjustForMissingHash()
             }
         })
         .on({
-
-
-            "/login": () => {
+            
+            "/" : () => {
+                renderHtml(templateHome, "content")
+                initHome()
+                toggleLoginStatus()
+            }, "/login": () => {
                 showPopup(templateLogin, "content")
                 initLogin()
                 adjustForMissingHash()
@@ -55,6 +65,7 @@ window.addEventListener("load", async () => {
             }, "/signOut": () => {
                 renderHtml(templateLogin, "content")
                 initSignOut()
+                toggleLoginStatus()
                 adjustForMissingHash()
             }, "/signUp": () => {
                 renderHtml(templateSignUp, "content")
@@ -83,6 +94,9 @@ window.addEventListener("load", async () => {
             }, "/reservation": (match) => {
                 renderHtml(templateReservation, "content")
                 initReservation(match)
+            }, "/showReservations": () => {
+                renderHtml(templateShowReservations, "content")
+                initShowReservations()
             }
             
         })
@@ -99,4 +113,19 @@ if (localStorage.getItem('username') !== null) document.getElementById('loggedIn
 function initUser(userId) {
     // Do something with the userId, e.g., display it on the page or perform some action
     console.log("User ID:", userId);
+}
+
+function burgerMenuHide(){
+const links = document.querySelectorAll('.menu-items a');
+const checkbox = document.querySelector('.checkbox');
+const logoLink = document.querySelector('#logo_link');
+
+links.forEach(link => {
+  link.addEventListener('click', () => {
+    checkbox.checked = false;
+  });
+});
+logoLink.addEventListener('click', () => {
+  checkbox.checked = false;
+});
 }

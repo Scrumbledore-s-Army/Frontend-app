@@ -6,6 +6,9 @@
 
 body {
     overflow-x: hidden;
+    --primary-color: #4B2990;
+    --secondary-color: #8f66c4;
+    --third-purple: #a48cc0;
 }
 
 #login-form {
@@ -287,6 +290,85 @@ body {
     cursor: pointer;
   }
 
+  /* Add a new class for the movie banner */
+.movie-banner {
+    z-index: 0;
+    position: relative; /* Use relative positioning */
+    width: 100%; /* Ensure full width */
+    height: 520px; /* Set the banner height */
+    overflow-x: hidden; /* Add horizontal scrolling */
+    overflow-y: hidden; /* Hide vertical scrolling */
+    white-space: nowrap; /* Prevent line breaks for inline elements */
+    flex-wrap: nowrap; /* Prevent items from wrapping */
+    background-color: var(--secondary-color);
+
+}
+
+/* Style for individual movie posters within the banner */
+.movie-poster {
+    display: inline-block; /* Display posters in a line */
+    width: 250px; /* Adjust the width as needed */
+    margin-right: 20px; /* Add margin between posters */
+    vertical-align: top; /* Align posters to the top */
+}
+
+/* Optional: Hide horizontal scrollbar */
+.movie-banner::-webkit-scrollbar {
+    display: none;
+}
+
+.banner-items {
+    display: flex; /* Arrange items horizontally */
+    transition: transform 0.5s ease-in-out; /* Smooth transition for swiping */
+    gap: 1000px; /* Add gap between items */
+    
+    margin-top: 25px;
+    max-height: 500px;
+    padding-right: 50px;
+  }
+
+.banner-item{
+    display: flex;
+    gap: 40px;
+}
+
+.banner-item-div{
+    width: 800px;
+}
+
+.banner-item-header{
+    text-align: left;
+    font-size: 48px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.banner-item-description{
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    width: 1000px;
+    max-height: 400px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.banner-item-poster{
+    max-width: 300px;
+    max-height: 450px;
+    border-radius: 5px;
+}
+
+.home-header{
+    background-color: var(--secondary-color);
+    text-align: left;
+}
+
+.home-text{
+    background-color: var(--third-purple);
+}
+  
+
   #add-showings-template {
     display: flex;
     margin-top: 100px   ;
@@ -297,18 +379,27 @@ body {
 #add-showing-form {
     margin-bottom: 20px;
 }
-.movie-details {
+.movie-details-container {
     display: flex;
     align-items: center;
     max-width: 70%;
 }
 
-.movie-details img {
+.movie-details-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.movie-details-container img {
     max-height: 100%; /* Make the image fill the height of the container */
     margin-right: 20px;
 }
 
-.movie-details ul {
+.movie-details-container ul {
     list-style-type: none;
     padding: 20;
     display: flex; /* Use flexbox for the list */
@@ -317,10 +408,80 @@ body {
     min-width: 20%;
 }
 
-.movie-details p {
+.movie-details-container p {
     max-width: 40%;
     justify-content: center;
 }
+
+.reservation-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.reservation-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.reservation-seats {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.reservation-info {
+    margin: 0;
+}
+
+.reservation-title {
+    font-weight: bold;
+}
+
+.reservation-seat-info {
+    margin: 0;
+}
+
+#search-btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: rebeccapurple;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#search-btn:hover {
+    background-color: #4B2990;
+}
+
+#reserve-btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: rebeccapurple;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#reserve-btn:hover {
+    background-color: #4B2990;
+}
+
+#movieInfo {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
 #ticket-container{
     width: 50%;
     height: 70%;
