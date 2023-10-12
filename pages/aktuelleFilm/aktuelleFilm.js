@@ -1,3 +1,5 @@
+import { API_URL } from "../../settings.js";
+
 export function initAktuelleFilm() {
     loadMovies();
 }
@@ -8,7 +10,8 @@ async function loadMovies() {
         const movieContainer = document.getElementById("movie-container");
         movieContainer.innerHTML = '';
         // Fetch the JSON data from the API
-        const response = await fetch("http://localhost:8080/api/films");
+        const url = API_URL + "/films";
+        const response = await fetch(url);
         const data = await response.json();
 
         // Loop through the data and create movie cards
