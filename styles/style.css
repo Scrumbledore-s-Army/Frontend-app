@@ -4,8 +4,6 @@
     box-sizing: border-box;
 }
 
-
-
 body {
     overflow-x: hidden;
     --primary-color: #4B2990;
@@ -387,6 +385,15 @@ body {
     max-width: 70%;
 }
 
+.movie-details-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
 .movie-details-container img {
     max-height: 100%; /* Make the image fill the height of the container */
     margin-right: 20px;
@@ -436,4 +443,18 @@ body {
 
 .reservation-seat-info {
     margin: 0;
+}
+
+#search-btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: rebeccapurple;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#search-btn:hover {
+    background-color: #4B2990;
 }

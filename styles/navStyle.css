@@ -1,14 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 .outerNavBar {
     background: white;
     height: 55px;
     width: 100vw;
-    box-shadow: 0px 1.5px 4px rgba(0, 0, 0, 0.2); /* Adjust the values for a sharper shadow */
+    box-shadow: 0px 1.5px 4px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
+
 html, body {
+    z-index: 1;
     margin: 0;
     background: #f0f0f0;
 }
@@ -53,8 +60,6 @@ a {
     #logo {
         margin: 20px;
     }
-
-
 }
 
 #hamburger-container{
@@ -85,8 +90,6 @@ a {
         margin: 20px;
     }
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 * {
     margin: 0;
@@ -243,25 +246,16 @@ body {
 
 .cinema-container {
     display: flex;
-    align-items: flex-start; /* Align items vertically at the top */
-}
-
-#cinemaSeats {
-    /* Your existing styles for cinema seats */
+    align-items: flex-start;
 }
 
 #selectedSeatsContainer {
     border: 2px solid black;
     padding: 10px;
-    margin-left: 20px; /* Add some spacing between cinema seats and selected seats */
+    margin-left: 20px;
     min-width: 150px;
 
 }
-
-#seatsSelected {
-
-}
-
 
 .nav-container input[type="checkbox"]:checked ~ .logo {
     display: none;
@@ -279,7 +273,6 @@ body {
     background: black;
 }
 
-/* Style for movie details */
 .movie-details {
     margin: 20px;
     padding: 20px;
@@ -294,7 +287,6 @@ body {
     height: auto;
 }
 
-/* Style for showings */
 .movie-showings {
     margin: 20px;
     padding: 20px;
@@ -309,11 +301,11 @@ body {
     margin-bottom: 10px;
 }
 
-/* Style for individual showings */
 #showing {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 20px;
+    cursor: pointer;
 }
 
 .showing-card {

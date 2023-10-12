@@ -6,9 +6,6 @@ export function initShowing(match) {
     getShowing(match.params.showingId);
 
     document.getElementById("reserve-btn").addEventListener("click", goToReservation)
-
-
-
 }
 
 
@@ -37,7 +34,7 @@ function makeseats(showing) {
 
 
 
-    seatsData[5].reservation='test'
+    seatsData[5].reservation = 'test'
     // Select the cinema-container div
     const cinemaSeats = document.querySelector('.cinema-container');
 
@@ -115,7 +112,7 @@ function makeseats(showing) {
     document.getElementById('showId').innerText = `Forestillings ID: ${showId}`
 }
 
-function goToReservation(){
+function goToReservation() {
     const seatsSelected = markedSeats;
 
 
