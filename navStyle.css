@@ -331,3 +331,16 @@ body {
    background: rebeccapurple;
     color: white;
 }
+@media print {
+    /* Hide the navigation bar and adjust other styles for printing */
+    .outerNavBar {
+        display: none;
+    }
+    
+    /* Define styles for the printed content, such as font size and margins */
+
+    /* Show the elements you want to print */
+    #ticket-container {
+        display: block;
+    }
+}

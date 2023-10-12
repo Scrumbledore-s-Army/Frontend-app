@@ -3,18 +3,21 @@ import { handleHttpErrors, makeOptions } from "../../utils.js";
 
 let username;
 let showingId;
-let seats;
+let seats = [];
+let theaterId;
+let reservationId;
+let totalPrice
+let title;
+let email;
+let isPrinting = false;
 
 export function initReservation(match) {
-
     username = localStorage.username;
     showingId = match.params.showingId;
     showingId = parseInt(match.params.showingId, 10);
 
-
     seats = match.params.seatsSelected;
     seats = seats.split(',').map(str => parseInt(str, 10));
-
 
     const reservationData = {
         username: username,
@@ -22,19 +25,92 @@ export function initReservation(match) {
         seatIds: seats
     };
 
+    addReservation(reservationData)
+        .then(data => {
+            reservationId = data; // Assuming data is already an integer
+            console.log('Reservation created with ID:', reservationId);
+            console.log("This happens first")
+            // Now that the first fetch is complete, you can run another fetch here
+            displayTicket(reservationId);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 
-    fetch('http://localhost:8080/api/reservations', {
+        window.addEventListener('afterprint', function () {
+            console.log('afterprint event triggered');
+            isPrinting = false;
+        });    
+
+        print();
+
+
+}
+function print(){
+
+    document.querySelector("#print-btn").addEventListener("click", function () {
+        if (!isPrinting) {
+            isPrinting = true;
+            window.print();
+        }
+    });
+
+}
+
+function addReservation(reservationData) {
+    return fetch('http://localhost:8080/api/reservations', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(reservationData)
     })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Reservation response:', data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
+        .then(response => {
+            if (response.ok) {
+                return response.json(); // Assuming the response is actually JSON
+            } else {
+                throw new Error('Network response was not ok');
+            }
         });
 }
+
+function displayTicket(reservationId) {
+    const apiUrl = `http://localhost:8080/api/reservations/id/${reservationId}`;
+  
+    fetch(apiUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        title = data.title;
+        seats = data.seats;
+        showingId = data.showingId;
+        reservationId = data.reservationId; 
+        theaterId = data.theaterId;
+        totalPrice = data.totalPrice
+
+        document.querySelector("#reservation-id").innerText = `Reservations-ID: ${reservationId}`;
+        document.querySelector("#text").innerText = `Kære ${username}, tak fordi du valgte at se din film hos KinoXP`;
+        document.querySelector("#title").innerText = `Filmtitel: ${title}`;
+        document.querySelector("#theater-id").innerText = `Sal: ${theaterId}`;
+        document.querySelector("#total-price").innerText = `Billetpris: ${totalPrice} kr.`;
+        document.querySelector("#showing-id").innerText = `Forestillings-ID: ${showingId}`;
+        if (Array.isArray(seats)) {
+            const seatNumbers = seats.map(seat => seat.seatNumber);
+            document.querySelector("#seats").innerText = `Sæde(r): ${seatNumbers.join(', ')}`;
+          } else {
+            document.querySelector("#seats").innerText = `Sæder: Ingen angivet`;
+          }
+
+
+
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+  

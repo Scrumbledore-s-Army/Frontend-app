@@ -2,6 +2,8 @@ import { API_URL} from "../../settings.js";
 import { handleHttpErrors, makeOptions } from "../../utils.js";
 
 export function initAddShowing() {
+  document.querySelector("#film-input").innerHTML = "";
+  document.querySelector("#theater-input").innerHTML = "";
   loadMovies();
   loadTheaters();
 
