@@ -1,3 +1,5 @@
+import { API_URL } from "../../settings.js";
+
 export async function initShowAllUsers() {
     try {
         // Get the token from wherever you stored it (e.g., localStorage)
@@ -8,7 +10,8 @@ export async function initShowAllUsers() {
             return;
         }
 
-        const response = await fetch('http://localhost:8080/api/users', {
+        const url = API_URL + "/users";
+        const response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

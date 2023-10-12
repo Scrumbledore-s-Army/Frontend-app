@@ -1,3 +1,5 @@
+import { API_URL } from "../../settings.js";
+
 export async function initShowReservations() {
     try {
         const username = localStorage.getItem('username');
@@ -7,7 +9,7 @@ export async function initShowReservations() {
             return;
         }
     
-        const response = await fetch(`http://localhost:8080/api/reservations/${username}`, {
+        const response = await fetch(`${API_URL}/reservations/${username}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

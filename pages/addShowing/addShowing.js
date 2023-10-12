@@ -18,7 +18,8 @@ export function initAddShowing() {
 
 async function loadMovies() {
   try {
-    const response = await fetch("http://localhost:8080/api/films");
+    const url = API_URL + "/films";
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error('Request failed');
     }
@@ -47,7 +48,8 @@ async function loadMovies() {
 
 async function loadTheaters(){
 try {
-  const response = await fetch("http://localhost:8080/api/theaters")
+  const url = API_URL + "/theaters";
+  const response = await fetch(url)
   if(!response.ok){
       throw new Error('Request failed')
   }
@@ -77,7 +79,8 @@ try {
 async function inspectFilm(){
   const filmId = document.getElementById("film-input").value;
 
-  await fetch("http://localhost:8080/api/films/" + filmId)
+  const url = API_URL + "/films/" + filmId;
+  await fetch(url)
   .then(res => handleHttpErrors(res))
   .then(film => {
       const markUp = `

@@ -1,3 +1,5 @@
+import { API_URL } from "../../settings.js";
+
 export async function initFindFilm(match) {
     getFilmInfo(match.params.filmId);
     fetchAndDisplayShowings(match.params.filmId);
@@ -5,7 +7,7 @@ export async function initFindFilm(match) {
 }
 
 async function getFilmInfo(filmId) {
-    const apiUrl = `http://localhost:8080/api/films/${filmId}`;
+    const apiUrl = API_URL + "/films/" + filmId;
     try {
         const response = await fetch(apiUrl, {});
         const data = await response.json();
@@ -34,7 +36,7 @@ async function getFilmInfo(filmId) {
 async function fetchAndDisplayShowings(movieId) {
     try {
         // Construct the API URL
-        const apiUrl = `http://localhost:8080/api/showings/findAllByFilmId/${movieId}`;
+        const apiUrl = API_URL + "/showings/findAllByFilmId/" + movieId;
 
         // Get the "showing" element where you want to append the data
         const showingElement = document.getElementById("showing");
