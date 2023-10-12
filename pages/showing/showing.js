@@ -2,6 +2,10 @@ import { API_URL } from "../../settings.js";
 import { handleHttpErrors, makeOptions } from "../../utils.js";
 
 export function initShowing(match) {
+    markedSeats.length=0;
+    markedSeatsDbId.length=0;
+    seatsSelected.innerHTML="";
+
     showingId = match.params.showingId;
     getShowing(match.params.showingId);
 
