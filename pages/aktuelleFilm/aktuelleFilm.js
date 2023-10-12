@@ -26,7 +26,7 @@ async function loadMovies() {
 
             // Create a span for the movie title
             const titleSpan = document.createElement("span");
-            const maxLength = 32;
+            const maxLength = 30;
             titleSpan.className = "movie-title";
             titleSpan.textContent = movie.title;
 
