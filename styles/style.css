@@ -239,7 +239,7 @@ body {
     margin-top: 10px;
 }
 
-#inspect-btn, #add-film-btn, #add-showing-btn {
+#inspect-btn, #add-film-btn, #add-showing-btn, #print-btn {
     padding: 10px 20px;
     border-radius: 4px;
     background-color: rebeccapurple;
@@ -249,7 +249,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-#inspect-btn:hover, #add-film-btn:hover {
+#inspect-btn:hover, #add-film-btn:hover, #print-btn:hover {
     background-color: #4B2990;
 }
 
@@ -480,4 +480,28 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#ticket-container{
+    width: 50%;
+    height: 70%;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+
+}
+#ticket{
+    text-align: center;
+}
+#item-list-ticket li{
+padding:20px;
+}
+
+@media print {
+    /* Hide the navigation bar and adjust other styles for printing */
+    #print-btn{
+        display: none;
+    }
 }
