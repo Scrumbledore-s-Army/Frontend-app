@@ -10,6 +10,7 @@ let totalPrice
 let title;
 let email;
 let isPrinting = false;
+let dateTime;
 
 export function initReservation(match) {
     username = localStorage.username;
@@ -61,7 +62,7 @@ function print(){
 
   const url = API_URL + "/reservations";
 function addReservation(reservationData) {
-    return fetch(url', {
+    return fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -78,9 +79,10 @@ function addReservation(reservationData) {
 }
 
 function displayTicket(reservationId) {
-    const apiUrl = `http://localhost:8080/api/reservations/id/${reservationId}`;
+    const url = API_URL +"/reservations/id/"+ reservationId;
+    
   
-    fetch(apiUrl)
+    fetch(url)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -95,10 +97,12 @@ function displayTicket(reservationId) {
         reservationId = data.reservationId; 
         theaterId = data.theaterId;
         totalPrice = data.totalPrice
+        dateTime = data.showingDate;
 
         document.querySelector("#reservation-id").innerText = `Reservations-ID: ${reservationId}`;
         document.querySelector("#text").innerText = `Kære ${username}, tak fordi du valgte at se din film hos KinoXP`;
         document.querySelector("#title").innerText = `Filmtitel: ${title}`;
+        document.querySelector("#date-time").innerText = `Tidspunkt: ${dateTime}`
         document.querySelector("#theater-id").innerText = `Sal: ${theaterId}`;
         document.querySelector("#total-price").innerText = `Billetpris: ${totalPrice} kr.`;
         document.querySelector("#showing-id").innerText = `Forestillings-ID: ${showingId}`;
