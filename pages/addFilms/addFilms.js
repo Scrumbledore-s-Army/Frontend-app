@@ -1,10 +1,18 @@
-import { sanitizeStringWithTableRows, handleHttpErrors, makeOptions} from "../../utils.js"
+import { API_URL } from "../../settings.js"
+import { sanitizeStringWithTableRows, handleHttpErrors, makeOptions, checkLogin} from "../../utils.js"
 
-const url = "http://localhost:8080/api/films"
+const url = API_URL + "/films"
 
 const omdbUrl= "http://www.omdbapi.com/?apikey=6dfe795d&plot=full&i="
 
 export function initAddFilm(){
+    const token = localStorage.getItem('token');
+    if (token === null) {
+        alert("Du skal være logget ind for at tilføje en film")
+        window.router.navigate("#")
+        return;
+    }
+
     document.querySelector("#inspect-btn").addEventListener("click", async () => inspectFilm())
     document.querySelector("#add-film-btn").addEventListener("click", async () => addFilm())
 }
@@ -33,21 +41,19 @@ async function inspectFilm(){
 }
 
 async function addFilm(){
+    const showresponse = document.getElementById("response")
     const filmId = document.querySelector("#film-input").value
-    const token = localStorage.getItem('token');
     try{
 
-        if (!token) {
-            console.error('Token not found. Please log in.');
-            return;
-        }
-
+        checkLogin()
         const response = await fetch(url + "/" + filmId, makeOptions("POST", null, true))
         
         if(response.ok){
-            alert("GODT")
+            showresponse.style.color = "green"
+            showresponse.innerHTML = "Film tilføjet"
         } else {
-            alert("LORT")
+            showresponse.style.color = "red"
+            showresponse.innerHTML = "Film kunne ikke tilføjes"
         }
         
         

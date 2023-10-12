@@ -1,3 +1,5 @@
+import { API_URL } from "../../settings.js";
+
 export function initAktuelleFilm() {
     loadMovies();
 }
@@ -8,7 +10,8 @@ async function loadMovies() {
         const movieContainer = document.getElementById("movie-container");
         movieContainer.innerHTML = '';
         // Fetch the JSON data from the API
-        const response = await fetch("http://localhost:8080/api/films");
+        const url = API_URL + "/films";
+        const response = await fetch(url);
         const data = await response.json();
 
         // Loop through the data and create movie cards
@@ -23,8 +26,15 @@ async function loadMovies() {
 
             // Create a span for the movie title
             const titleSpan = document.createElement("span");
+            const maxLength = 30;
             titleSpan.className = "movie-title";
             titleSpan.textContent = movie.title;
+
+            if (movie.title.length > maxLength) {
+                titleSpan.textContent = movie.title.slice(0, maxLength) + "...";
+            } else {
+                titleSpan.textContent = movie.title;
+            }
 
             // Create a div for the movie buttons container
             const btnsContainerDiv = document.createElement("div");
@@ -32,7 +42,6 @@ async function loadMovies() {
 
             // Create "Read More" link
             const readMoreLink = document.createElement("a");
-            readMoreLink.href = `#`;
             readMoreLink.setAttribute("data-navigo", "");
             readMoreLink.className = "read-more-btn";
             const readMoreSpan = document.createElement("span");
@@ -42,7 +51,7 @@ async function loadMovies() {
             // Create "Billeter" link
             const ticketsLink = document.createElement("a");
 
-            ticketsLink.href = `/find-film?filmId=${movie.id}`;
+            ticketsLink.href = `/#/find-film?filmId=${movie.id}`;
 
             ticketsLink.setAttribute("data-navigo", "");
             ticketsLink.className = "tickets-btn";
@@ -64,20 +73,36 @@ async function loadMovies() {
             // Append the movie card to the container
             movieContainer.appendChild(card);
 
-             readMoreLink.addEventListener("click", () => {
+
+
+            readMoreLink.addEventListener("click", () => {
                 const modal = document.getElementById("myModal");
                 modal.style.display = "block";
                 const plotText = document.getElementById("plot-text");
                 plotText.textContent = movie.plot;
+            
+                // Set the title inside the event listener
+                const h1Element = document.querySelector(".modal-content-film h1");
+                h1Element.textContent = movie.title;
             });
-        });     
-        
-          // Get the modal close button and add an event listener to close the modal
-          const closeButton = document.getElementsByClassName("close")[0];
-          closeButton.addEventListener("click", () => {
-              const modal = document.getElementById("myModal");
-              modal.style.display = "none";
-          });
+        });
+
+        // Get the modal close button and add an event listener to close the modal
+        const closeButton = document.getElementsByClassName("close")[0];
+        closeButton.addEventListener("click", () => {
+            closeModal();
+        });
+        function closeModal() {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+
+        document.addEventListener("click", (event) => {
+            const modal = document.getElementById("myModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
     } catch (error) {
         console.error("Error fetching data:", error);
     }
