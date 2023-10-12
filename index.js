@@ -44,6 +44,7 @@ window.addEventListener("load", async () => {
             before(done, match) {
                 setActiveLink("menu", match.url)
                 done()
+                burgerMenuHide()
                 adjustForMissingHash()
             }
         })
@@ -112,4 +113,19 @@ if (localStorage.getItem('username') !== null) document.getElementById('loggedIn
 function initUser(userId) {
     // Do something with the userId, e.g., display it on the page or perform some action
     console.log("User ID:", userId);
+}
+
+function burgerMenuHide(){
+const links = document.querySelectorAll('.menu-items a');
+const checkbox = document.querySelector('.checkbox');
+const logoLink = document.querySelector('#logo_link');
+
+links.forEach(link => {
+  link.addEventListener('click', () => {
+    checkbox.checked = false;
+  });
+});
+logoLink.addEventListener('click', () => {
+  checkbox.checked = false;
+});
 }

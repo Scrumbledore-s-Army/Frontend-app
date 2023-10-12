@@ -41,6 +41,7 @@ async function inspectFilm(){
 }
 
 async function addFilm(){
+    const showresponse = document.getElementById("response")
     const filmId = document.querySelector("#film-input").value
     try{
 
@@ -48,9 +49,11 @@ async function addFilm(){
         const response = await fetch(url + "/" + filmId, makeOptions("POST", null, true))
         
         if(response.ok){
-            alert("GODT")
+            showresponse.style.color = "green"
+            showresponse.innerHTML = "Film tilføjet"
         } else {
-            alert("LORT")
+            showresponse.style.color = "red"
+            showresponse.innerHTML = "Film kunne ikke tilføjes"
         }
         
         
