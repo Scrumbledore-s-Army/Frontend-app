@@ -88,7 +88,7 @@ function makeseats(showing) {
             const seatData = seatsData[i * showing.theater.rowLength + j];
 
             // Set the cinema seat image source
-            seat.setAttribute('src', '../../images/cinema-seat-svgrepo-com.svg');
+            seat.setAttribute('src', 'images/cinema-seat-svgrepo-com.svg');
             seat.classList.add('cinema-seat');
 
             if (seatData.isReserved === true) {
