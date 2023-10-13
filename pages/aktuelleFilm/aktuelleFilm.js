@@ -17,12 +17,16 @@ async function loadMovies() {
         // Loop through the data and create movie cards
         data.forEach((movie) => {
             const card = document.createElement("card");
-            card.className = "movie-card";
+            card.className = "movie-card"; 
 
             // Create an img element for the movie poster
             const posterImg = document.createElement("img");
             posterImg.className = "movie-poster-img";
             posterImg.src = movie.poster;
+
+            posterImg.addEventListener("click", () => {
+                window.location.href = `#/find-film?filmId=${movie.id}`;
+            });       
 
             // Create a span for the movie title
             const titleSpan = document.createElement("span");
