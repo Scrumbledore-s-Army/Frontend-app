@@ -20,10 +20,11 @@ async function inspectFilm(){
     const filmId = document.getElementById("film-input").value;
 
     const inspectApi = url + "/inspectFilm/" + filmId
+    
     try {
         
     
-    await fetch(inspectApi)
+    await fetch(inspectApi, makeOptions("GET", null, true))
     .then(res => handleHttpErrors(res))
     .then(film => {
         const markUp = `
