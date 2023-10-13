@@ -34,7 +34,7 @@ window.addEventListener("load", async () => {
     const templateShowReservations = await loadHtml("./pages/showReservations/showReservations.html")
 
     toggleLoginStatus()
-    document.getElementById("logo_link").addEventListener("click", () => {
+    document.getElementById("logo").addEventListener("click", () => {
         window.router.navigate("/#")
     })
 
@@ -49,6 +49,7 @@ window.addEventListener("load", async () => {
                 done()
                 burgerMenuHide()
                 adjustForMissingHash()
+                
             }
         })
         .on({
@@ -121,7 +122,7 @@ function initUser(userId) {
 function burgerMenuHide(){
 const links = document.querySelectorAll('.menu-items a');
 const checkbox = document.querySelector('.checkbox');
-const logoLink = document.querySelector('#logo_link');
+const logoLink = document.querySelector('#logo');
 
 
 document.addEventListener("click", (event) => {
