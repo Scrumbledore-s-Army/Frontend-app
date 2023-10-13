@@ -43,6 +43,9 @@ window.addEventListener("load", async () => {
     router
         .hooks({
             before(done, match) {
+                if(match.url === "/"){
+                    match.url = "/#/"
+                }
                 setActiveLink("menu", match.url)
                 done()
                 burgerMenuHide()
