@@ -121,5 +121,5 @@ function goToReservation() {
 
 
     console.log(seatsSelected);
-    window.location.href = `/#/reservation?seatsSelected=${markedSeatsDbId}&showingId=${showingId}`
+    window.router.navigate(`reservation?seatsSelected=${seatsSelected}&showingId=${showingId}`)
 }
