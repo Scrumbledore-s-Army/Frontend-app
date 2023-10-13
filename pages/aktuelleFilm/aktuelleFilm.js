@@ -51,7 +51,7 @@ async function loadMovies() {
             // Create "Billeter" link
             const ticketsLink = document.createElement("a");
 
-            ticketsLink.href = `/#/find-film?filmId=${movie.id}`;
+            window.router.navigate = `/#/find-film?filmId=${movie.id}`;
 
             ticketsLink.setAttribute("data-navigo", "");
             ticketsLink.className = "tickets-btn";
