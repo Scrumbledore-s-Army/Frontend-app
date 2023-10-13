@@ -47,7 +47,7 @@ window.addEventListener("load", async () => {
                 done()
                 burgerMenuHide()
                 adjustForMissingHash()
-                document.getElementById("logo").addEventListener("click", () => {
+                document.getElementById("logo_link").addEventListener("click", () => {
                     window.router.navigate("/#")
                 })
             }
