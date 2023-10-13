@@ -34,6 +34,7 @@ window.addEventListener("load", async () => {
     const templateShowReservations = await loadHtml("./pages/showReservations/showReservations.html")
 
     toggleLoginStatus()
+    
 
     const router = new Navigo("/", {hash: true});
     //Not especially nice, BUT MEANT to simplify things. Make the router global so it can be accessed from all js-files
@@ -46,6 +47,9 @@ window.addEventListener("load", async () => {
                 done()
                 burgerMenuHide()
                 adjustForMissingHash()
+                document.getElementById("logo_link").addEventListener("click", () => {
+                    window.router.navigate("/#")
+                })
             }
         })
         .on({
@@ -88,6 +92,7 @@ window.addEventListener("load", async () => {
             }, "/find-film": (match) => {
                 renderHtml(templateFindFilm, "content")
                 initFindFilm(match)
+                adjustForMissingHash()
             }, "/showing": (match) => {
                 renderHtml(templateShowing, "content")
                 initShowing(match)
@@ -118,7 +123,7 @@ function initUser(userId) {
 function burgerMenuHide(){
 const links = document.querySelectorAll('.menu-items a');
 const checkbox = document.querySelector('.checkbox');
-const logoLink = document.querySelector('#logo_link');
+const logoLink = document.querySelector('#logo');
 
 
 document.addEventListener("click", (event) => {

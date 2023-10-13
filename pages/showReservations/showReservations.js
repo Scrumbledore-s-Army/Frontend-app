@@ -2,17 +2,14 @@ import { API_URL } from "../../settings.js";
 
 export async function initShowReservations() {
     try {
-        const username = localStorage.getItem('username');
+        const token = localStorage.getItem('token');
     
-        if (!username) {
-            console.error('Username not found. Please log in.');
-            return;
-        }
-    
-        const response = await fetch(`${API_URL}/reservations/${username}`, {
+     
+        const response = await fetch(`${API_URL}/reservations`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` , 
+                'Content-Type': 'application/json'
             },
         });
         if (!response.ok) {

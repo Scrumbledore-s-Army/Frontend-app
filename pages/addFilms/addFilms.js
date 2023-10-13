@@ -3,7 +3,6 @@ import { sanitizeStringWithTableRows, handleHttpErrors, makeOptions, checkLogin}
 
 const url = API_URL + "/films"
 
-const omdbUrl= "http://www.omdbapi.com/?apikey=6dfe795d&plot=full&i="
 
 export function initAddFilm(){
     const token = localStorage.getItem('token');
@@ -20,7 +19,12 @@ export function initAddFilm(){
 async function inspectFilm(){
     const filmId = document.getElementById("film-input").value;
 
-    await fetch(omdbUrl+filmId)
+    const inspectApi = url + "/inspectFilm/" + filmId
+    
+    try {
+        
+    
+    await fetch(inspectApi, makeOptions("GET", null, true))
     .then(res => handleHttpErrors(res))
     .then(film => {
         const markUp = `
@@ -35,6 +39,10 @@ async function inspectFilm(){
 
     document.querySelector("#inspect-film").innerHTML=markUp
     })
+
+} catch (error) {
+    console.error('Error fetching data:', error);  
+}
 
     
     

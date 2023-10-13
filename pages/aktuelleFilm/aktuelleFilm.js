@@ -46,7 +46,7 @@ async function loadMovies() {
 
             // Create "Read More" link
             const readMoreLink = document.createElement("a");
-            readMoreLink.setAttribute("data-navigo", "");
+            //readMoreLink.setAttribute("data-navigo", "");
             readMoreLink.className = "read-more-btn";
             const readMoreSpan = document.createElement("span");
             readMoreSpan.textContent = "Læs Mere";
@@ -55,10 +55,10 @@ async function loadMovies() {
             // Create "Billeter" link
             const ticketsLink = document.createElement("a");
 
-            ticketsLink.href = `/#/find-film?filmId=${movie.id}`;
+            ticketsLink.href = "find-film?filmId=" + movie.id;
 
-            ticketsLink.setAttribute("data-navigo", "");
             ticketsLink.className = "tickets-btn";
+            //ticketsLink.setAttribute("data-navigo", "");
             const ticketsSpan = document.createElement("span");
             ticketsSpan.textContent = "Billeter";
             const ticketsImg = document.createElement("img");
@@ -66,6 +66,10 @@ async function loadMovies() {
             ticketsImg.src = "../../images/ticket-outline.svg";
             ticketsLink.appendChild(ticketsSpan);
             ticketsLink.appendChild(ticketsImg);
+            ticketsLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                window.router.navigate(e.currentTarget.getAttribute("href"));
+            })
 
             // Append elements to the movie card
             btnsContainerDiv.appendChild(readMoreLink);
