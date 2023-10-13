@@ -46,7 +46,7 @@ export async function loadHtml(page) {
 export function adjustForMissingHash() {
   let path = window.location.hash
   console.log("Path: " + path)
-  if (path == "" || !path.includes("#")) { //Do this only for hash
+  if (path == "") { //Do this only for hash
     console.log("Adjusting for missing hash")
     path = "#/"
     window.history.pushState({}, path, window.location.href + path);
