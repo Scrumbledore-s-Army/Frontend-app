@@ -20,7 +20,7 @@ export function initReservation(match) {
     seats = match.params.seatsSelected;
     seats = seats.split(',').map(str => parseInt(str, 10));
 
-    const reservationData = {
+    let reservationData = {
         username: username,
         showingId: showingId,
         seatIds: seats
