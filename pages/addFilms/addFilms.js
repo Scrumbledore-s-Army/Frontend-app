@@ -20,7 +20,9 @@ export function initAddFilm(){
 async function inspectFilm(){
     const filmId = document.getElementById("film-input").value;
 
-    await fetch(omdbUrl+filmId)
+    const inspectApi = API_URL + "/inspectfilm/" + filmId
+
+    await fetch(inspectApi)
     .then(res => handleHttpErrors(res))
     .then(film => {
         const markUp = `
