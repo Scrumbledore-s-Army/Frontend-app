@@ -89,7 +89,7 @@ async function inspectFilm(){
       <div class="movie-details">
     <div style="display: flex;">
         <div>
-            <ul>
+            <ul style="display: table">
                 <li>Titel: ${film.title}</li>
                 <li>Instruktør: ${film.director}</li>
                 <li>Løbetid: ${film.runtime}</li>
@@ -99,7 +99,7 @@ async function inspectFilm(){
             <br>
             <p>${film.plot}</p>
         </div>
-        <img src="${film.poster}" style="max-width: 300px; margin-right: 20px;">
+        <img src="${film.poster}" style="max-width: 300px; margin-right: 10px; margin-left: 10px">
     </div>
 </div>
   `;
