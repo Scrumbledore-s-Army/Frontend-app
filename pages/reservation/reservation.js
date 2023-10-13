@@ -61,22 +61,31 @@ function print(){
 }
 
   const url = API_URL + "/reservations";
-function addReservation(reservationData) {
+
+  function addReservation(reservationData) {
+    const token = localStorage.getItem('token'); // Replace 'yourAuthTokenKey' with the key you used to store the token in localStorage
+
+    if (!token) {
+        throw new Error('Authentication token not found in localStorage');
+    }
+
     return fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Add the token to the headers
         },
         body: JSON.stringify(reservationData)
     })
-        .then(response => {
-            if (response.ok) {
-                return response.json(); // Assuming the response is actually JSON
-            } else {
-                throw new Error('Network response was not ok');
-            }
-        });
+    .then(response => {
+        if (response.ok) {
+            return response.json(); // Assuming the response is actually JSON
+        } else {
+            throw new Error('Network response was not ok');
+        }
+    });
 }
+
 
 function displayTicket(reservationId) {
     const url = API_URL +"/reservations/id/"+ reservationId;
