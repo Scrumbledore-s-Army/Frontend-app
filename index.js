@@ -92,6 +92,7 @@ window.addEventListener("load", async () => {
             }, "/find-film": (match) => {
                 renderHtml(templateFindFilm, "content")
                 initFindFilm(match)
+                adjustForMissingHash()
             }, "/showing": (match) => {
                 renderHtml(templateShowing, "content")
                 initShowing(match)

@@ -51,10 +51,10 @@ async function loadMovies() {
             // Create "Billeter" link
             const ticketsLink = document.createElement("a");
 
-            ticketsLink.href = `/#/find-film?filmId=${movie.id}`;
+            ticketsLink.href = "find-film?filmId=" + movie.id;
 
-            ticketsLink.setAttribute("data-navigo", "");
             ticketsLink.className = "tickets-btn";
+            ticketsLink.setAttribute("data-navigo", "");
             const ticketsSpan = document.createElement("span");
             ticketsSpan.textContent = "Billeter";
             const ticketsImg = document.createElement("img");
