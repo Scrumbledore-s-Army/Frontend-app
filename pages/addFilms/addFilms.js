@@ -30,7 +30,7 @@ async function inspectFilm(){
         const markUp = `
         <ul>
         <li>Title: ${film.Title}</li>
-        <li>Director ${film.Director}</li>
+        <li>Director: ${film.Director}</li>
         <li>Runtime: ${film.Runtime}</li>
         </ul>
     `;

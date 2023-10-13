@@ -86,17 +86,22 @@ async function inspectFilm(){
   .then(res => handleHttpErrors(res))
   .then(film => {
       const markUp = `
-      <div class="movie-details" style="margin-left: auto; margin-right: auto;"><img src="${film.poster}">
-      <ul>
-        <li>Titel: ${film.title}</li>
-        <li>Instruktør: ${film.director}</li>
-        <li>Løbetid: ${film.runtime}</li>
-        <li>Genre: ${film.genre}</li>
-        <li>PG-Rating: ${film.rated}</li>
-      </ul>
-      <br>
-      <p type="text">${film.plot}</å>
-      </div>
+      <div class="movie-details">
+    <div style="display: flex;">
+        <div>
+            <ul style="display: table">
+                <li>Titel: ${film.title}</li>
+                <li>Instruktør: ${film.director}</li>
+                <li>Løbetid: ${film.runtime}</li>
+                <li>Genre: ${film.genre}</li>
+                <li>PG-Rating: ${film.rated}</li>
+            </ul>
+            <br>
+            <p>${film.plot}</p>
+        </div>
+        <img src="${film.poster}" style="max-width: 300px; margin-right: 10px; margin-left: 10px">
+    </div>
+</div>
   `;
   console.log(filmId)
   console.log(film)
