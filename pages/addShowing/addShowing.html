@@ -1,12 +1,19 @@
+<DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href="styles/style.css"/>
+    </head>
+    <body>
 <div class="template" id="add-showings-template">
     <div>
         <h1 class="text-center" style="font-size: 35px; font-weight: bolder; margin-bottom: 25px;">Add Showings</h1>
         <form id="add-showing-form">
             <select id="film-input" name="film" aria-label="Select a film">
-                <option>Select Movie</option>
+                <option default style="font-style: italic;">
+                    Select Movie
+                </option>
             </select>
             <select id="theater-input" name="theater" aria-label="Select a theater">
-                <option>Select Theater</option>
+                <option default style="font-style: italic;">Select Theater</option>
             </select>
             </select>
             <input id="ticketPrice-input" type="text" placeholder="Enter Ticket Price">
@@ -17,6 +24,8 @@
         <div class="mt-4">
             <p id="addshowingmessage"></p>
         </div>
-        <div id="inspect-film"></div>
+        <div id="inspect-film" class="content-center"></div>
     </div>
 </div>
+</body>
+</html>
