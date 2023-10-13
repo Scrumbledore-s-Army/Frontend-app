@@ -89,6 +89,6 @@ async function fetchAndDisplayShowings(movieId) {
 function showingInfo(showingId) {
     console.log(showingId)
     console.log("showingInfo")
-    window.location.href = `/#/showing?showingId=${showingId}`
+    window.router.navigate("showing?showingId=" + showingId)
 }
 
